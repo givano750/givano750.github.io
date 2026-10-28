@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[Your Name] - Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="logo">[Your Name]</div>
+        <nav>
+            <a href="#about">About</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact</a>
+            <button id="theme-toggle" aria-label="Toggle Dark Mode">🌓</button>
+        </nav>
+    </header>
+
+    <main>
+        <section id="about" class="hero">
+            <div class="hero-content">
+                <h1>Hi, I'm <span class="accent">[Your Name]</span>.</h1>
+                <p>I am a [Your Profession] specializing in [Your Skill/Niche]. I build clean, minimalist, and functional experiences.</p>
+                <a href="#contact" class="btn">Get in touch</a>
+            </div>
+            <div class="profile-pic">
+                <img src="https://via.placeholder.com/180" alt="Profile Picture of [Your Name]">
+            </div>
+        </section>
+        <section id="projects">
+            <h2>Selected Work</h2>
+            <div class="project-grid">
+                <div class="project-card">
+                    <h3>[Project Name 1]</h3>
+                    <p>[Short description of the project and your role.]</p>
+                    <a href="#" class="project-link">View Project &rarr;</a>
+                </div>
+                <div class="project-card">
+                    <h3>[Project Name 2]</h3>
+                    <p>[Short description of the project and your role.]</p>
+                    <a href="#" class="project-link">View Project &rarr;</a>
+                </div>
+                <div class="project-card">
+                    <h3>[Project Name 3]</h3>
+                    <p>[Short description of the project and your role.]</p>
+                    <a href="#" class="project-link">View Project &rarr;</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2>Let's Connect</h2>
+            <p>I'm currently open for new opportunities. Feel free to reach out!</p>
+            
+            <button type="button" id="show-form-btn" class="btn">Email Me!</button>
+
+            <form id="contact-form" class="hidden" action="https://formspree.io/f/xppprqkd" method="POST">
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="email" name="email" placeholder="Your Email" required>
+                <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+                <button type="submit" class="btn">Send Message</button>
+                <p id="form-status"></p>
+            </form>
+        </section>
+    </main>
+
+<footer>
+        <div class="social-links">
+            <a href="https://facebook.com/[your-username]" target="_blank" aria-label="Facebook">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                </svg>
+            </a>
+            <a href="https://instagram.com/[your-username]" target="_blank" aria-label="Instagram">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                </svg>
+            </a>
+            <a href="https://linkedin.com/in/[your-username]" target="_blank" aria-label="LinkedIn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                    <rect x="2" y="9" width="4" height="12"></rect>
+                    <circle cx="4" cy="4" r="2"></circle>
+                </svg>
+            </a>
+            <a href="https://github.com/[your-username]" target="_blank" aria-label="GitHub">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                </svg>
+            </a>
+        </div>
+        <p>&copy; 2026 [Your Name]. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
