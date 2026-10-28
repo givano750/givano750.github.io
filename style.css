@@ -44,6 +44,7 @@ body {
     color: var(--text-color);
     transition: var(--transition);
     line-height: 1.6;
+    overflow-x: hidden;
 }
 
 /* Layout Container */
@@ -51,9 +52,39 @@ body {
     display: flex;
     width: 100%;
     min-height: 100vh;
+    position: relative;
 }
 
-/* Sidebar Navigation - Fixed/Static on Desktop */
+/* Mobile Menu Button */
+.mobile-menu-btn {
+    display: none;
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 1000;
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    padding: 0.6rem;
+    cursor: pointer;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 42px;
+    height: 42px;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
+}
+
+.hamburger-line {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background-color: var(--text-color);
+    border-radius: 2px;
+    transition: var(--transition);
+}
+
+/* Sidebar Navigation */
 .sidebar {
     width: var(--sidebar-width);
     position: sticky;
@@ -67,8 +98,8 @@ body {
     flex-shrink: 0;
     background-color: var(--bg-color);
     z-index: 100;
-    /* Keeps internal sidebar items fixed without creating a nested scrollbar */
-    overflow: hidden; 
+    overflow-y: auto;
+    transition: transform 0.3s ease;
 }
 
 .brand {
@@ -106,8 +137,7 @@ nav a {
     display: block;
 }
 
-nav a:hover,
-nav a.active {
+nav a:hover, nav a.active {
     color: var(--accent-color);
     background-color: var(--card-bg);
     box-shadow: var(--shadow-sm);
@@ -147,7 +177,7 @@ nav a.active {
     flex: 1;
     padding: 4rem 5rem;
     width: calc(100% - var(--sidebar-width));
-    max-width: fit-content;
+    min-width: 0;
 }
 
 section {
@@ -187,9 +217,10 @@ h2::after {
 
 .hero-content {
     flex: 1;
+    min-width: 0;
 }
 
-h1 {
+.hero-content h1 {
     font-size: clamp(2.2rem, 4vw, 3.2rem);
     line-height: 1.15;
     margin-bottom: 1.25rem;
@@ -244,6 +275,7 @@ h1 {
     border: none;
     cursor: pointer;
     transition: var(--transition);
+    text-align: center;
 }
 
 .btn:hover {
@@ -298,6 +330,7 @@ h1 {
     display: flex;
     align-items: center;
     gap: 0.6rem;
+    flex-wrap: wrap;
 }
 
 .timeline-date {
@@ -394,7 +427,7 @@ h1 {
 /* Projects Grid */
 .project-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 1.75rem;
 }
 
@@ -509,12 +542,12 @@ h1 {
     flex-direction: column;
     gap: 1rem;
     max-width: 520px;
+    width: 100%;
     margin-top: 1.75rem;
     animation: fadeIn 0.4s ease;
 }
 
-#contact-form input,
-#contact-form textarea {
+#contact-form input, #contact-form textarea {
     width: 100%;
     padding: 0.9rem 1.1rem;
     border: 1px solid var(--border-color);
@@ -525,8 +558,7 @@ h1 {
     transition: var(--transition);
 }
 
-#contact-form input:focus,
-#contact-form textarea:focus {
+#contact-form input:focus, #contact-form textarea:focus {
     outline: none;
     border-color: var(--accent-color);
     box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
@@ -591,29 +623,7 @@ footer {
     color: var(--text-muted);
 }
 
-/* Responsive Layout */
-@media (max-width: 868px) {
-    .layout-container {
-        flex-direction: column;
-    }
-
-    .sidebar {
-        width: 100%;
-        height: auto;
-        position: relative;
-        top: auto;
-        border-right: none;
-        border-bottom: 1px solid var(--border-color);
-        padding: 1.5rem;
-    }
-
-    .content {
-        width: 100%;
-        padding: 2.5rem 1.5rem;
-    }
-}
-
-/* Container Box matching GitHub's Card Design */
+/* GitHub Contribution Calendar Box */
 .github-calendar-box {
     background-color: #0d1117;
     border: 1px solid #30363d;
@@ -622,73 +632,120 @@ footer {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
     color: #c9d1d9;
     overflow-x: auto;
+    width: 100%;
 }
 
-/* Calendar Element Reset */
 .calendar {
     border: none !important;
     background: transparent !important;
     font-size: 12px;
+    min-width: 650px;
 }
 
-/* Contribution Header & Stats Text */
 .calendar .contrib-number {
     font-weight: 600;
     color: #f0f6fc;
 }
 
 .calendar .contrib-column, 
-.calendar .contrib-legend,
+.calendar .contrib-legend, 
 .calendar text.ContributionCalendar-label {
     fill: #8b949e;
     color: #8b949e;
     font-size: 12px;
 }
 
-/* GitHub Dark Theme Contribution Square Palette */
-.calendar rect.ContributionCalendar-day[data-level="0"],
-.calendar .ContributionCalendar-day[data-level="0"] {
+.calendar rect.ContributionCalendar-day[data-level="0"], .calendar .ContributionCalendar-day[data-level="0"] {
     fill: #161b22;
     background-color: #161b22;
-    shape-rendering: geometricPrecision;
     outline: 1px solid rgba(255, 255, 255, 0.05);
     rx: 2px;
     ry: 2px;
 }
-.calendar rect.ContributionCalendar-day[data-level="1"],
-.calendar .ContributionCalendar-day[data-level="1"] {
+.calendar rect.ContributionCalendar-day[data-level="1"], .calendar .ContributionCalendar-day[data-level="1"] {
     fill: #0e4429;
     background-color: #0e4429;
     rx: 2px;
     ry: 2px;
 }
-.calendar rect.ContributionCalendar-day[data-level="2"],
-.calendar .ContributionCalendar-day[data-level="2"] {
+.calendar rect.ContributionCalendar-day[data-level="2"], .calendar .ContributionCalendar-day[data-level="2"] {
     fill: #006d32;
     background-color: #006d32;
     rx: 2px;
     ry: 2px;
 }
-.calendar rect.ContributionCalendar-day[data-level="3"],
-.calendar .ContributionCalendar-day[data-level="3"] {
+.calendar rect.ContributionCalendar-day[data-level="3"], .calendar .ContributionCalendar-day[data-level="3"] {
     fill: #26a641;
     background-color: #26a641;
     rx: 2px;
     ry: 2px;
 }
-.calendar rect.ContributionCalendar-day[data-level="4"],
-.calendar .ContributionCalendar-day[data-level="4"] {
+.calendar rect.ContributionCalendar-day[data-level="4"], .calendar .ContributionCalendar-day[data-level="4"] {
     fill: #39d353;
     background-color: #39d353;
     rx: 2px;
     ry: 2px;
 }
 
-/* Links */
 .calendar a {
     color: #58a6ff;
     text-decoration: none;
 }
 .calendar a:hover {
     text-decoration: underline;
+}
+
+/* Responsive Styles for Mobile and Tablets */
+@media (max-width: 992px) {
+    .mobile-menu-btn {
+        display: flex;
+    }
+
+    .layout-container {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 280px;
+        height: 100vh;
+        background-color: var(--bg-color);
+        box-shadow: var(--shadow-md);
+        z-index: 999;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease-in-out;
+        padding: 2rem 1.5rem;
+    }
+
+    .sidebar.active {
+        transform: translateX(0);
+    }
+
+    .content {
+        width: 100%;
+        padding: 5rem 1.5rem 3rem 1.5rem;
+    }
+
+    .hero {
+        flex-direction: column-reverse;
+        align-items: center;
+        text-align: center;
+        gap: 2rem;
+        margin-bottom: 4rem;
+    }
+
+    .hero-cta {
+        justify-content: center;
+    }
+
+    .profile-pic {
+        width: 180px;
+        height: 180px;
+    }
+
+    .project-grid {
+        grid-template-columns: 1fr;
+    }
 }

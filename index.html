@@ -5,26 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Portfolio of Gian Carlo Diaz - Information Technology Student specializing in Business Analytics and Back-End Development.">
     <meta name="author" content="Gian Carlo Diaz">
-
     <!-- Open Graph / Social Media Preview -->
     <meta property="og:title" content="Gian Carlo Diaz - Portfolio">
     <meta property="og:description" content="IT Student & Backend Developer specializing in scalable web architecture, databases, and analytics.">
     <meta property="og:image" content="Pictures/me.jpg">
     <meta property="og:type" content="website">
-
     <title>Gian Carlo Diaz - Portfolio</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="layout-container">
+        <!-- Mobile Menu Toggle Button -->
+        <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Toggle Navigation Menu">
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+        </button>
+
         <!-- Sidebar Navigation -->
-        <header class="sidebar">
+        <header class="sidebar" id="sidebar">
             <div class="sidebar-top">
                 <div class="brand">
                     <div class="logo">Gian Carlo Diaz</div>
                     <p class="sidebar-subtitle">IT Student & Full-Stack Developer</p>
                 </div>
-                <nav>
+                <nav class="nav-menu">
                     <a href="#about" class="nav-link">About</a>
                     <a href="#education" class="nav-link">Education</a>
                     <a href="#skills" class="nav-link">Skills</a>
@@ -105,14 +110,13 @@
             <!-- Skills & Tech Stack Section -->
             <section id="skills">
                 <h2>Skills & Tech Stack</h2>
-                
                 <div class="skills-group">
                     <h3>Technologies & Languages</h3>
                     <div class="skills-badges tech-stack-badges">
                         <span>HTML</span>
                         <span>CSS</span>
                         <span>JavaScript</span>
-                        <span>php</span>
+                        <span>PHP</span>
                         <span>React</span>
                         <span>SQL</span>
                         <span>Python</span>
@@ -255,16 +259,28 @@
                 </script>
             </section>
 
-            <!-- Seminars Section -->
+        <!-- Seminars Section -->
             <section id="seminars">
                 <h2>Seminars & Conferences</h2>
                 <div class="timeline-list">
                     <div class="timeline-item">
                         <div class="timeline-header">
-                            <span class="timeline-date">March 2026</span>
+                            <span class="timeline-date">October 2026</span>
                         </div>
                         <div class="timeline-body">
-                            <h3>Batangas Information Technology Conference</h3>
+                            <h3>ConvergeIT 2026</h3>
+                            <p class="track">Converging Technologies for a Responsible, Secure, and Sustainable Digital Future</p>
+                            <p class="location">Batangas Information Technology Society</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-header">
+                            <span class="timeline-date">October 2026</span>
+                        </div>
+                        <div class="timeline-body">
+                            <h3>BITS2026</h3>
+                            <p class="track">AI and Blockchain for Smart Cities, Smart Business, and Smart Governance</p>
+                            <p class="location">Batangas Information Technology Society</p>
                         </div>
                     </div>
                     <div class="timeline-item">
@@ -272,7 +288,9 @@
                             <span class="timeline-date">October 2025</span>
                         </div>
                         <div class="timeline-body">
-                            <h3>DATABIZ Conference</h3>
+                            <h3>DATABIZ 2025</h3>
+                            <p class="track">Future-Proof Skills: Empowering Students with Data, AI, and Analytics</p>
+                            <p class="location">Batangas Information Technology Society</p>
                         </div>
                     </div>
                     <div class="timeline-item">
@@ -280,7 +298,9 @@
                             <span class="timeline-date">April 2025</span>
                         </div>
                         <div class="timeline-body">
-                            <h3>Batangas Information Technology Conference</h3>
+                            <h3>BITCON 2025</h3>
+                            <p class="track">Building a Connected Tomorrow: IoT Innovations and Beyond</p>
+                            <p class="location">Batangas Information Technology Society</p>
                         </div>
                     </div>
                     <div class="timeline-item">
@@ -288,45 +308,29 @@
                             <span class="timeline-date">April 2024</span>
                         </div>
                         <div class="timeline-body">
-                            <h3>Batangas Information Technology Conference</h3>
+                            <h3>DATABIZ 2024</h3>
+                            <p class="track">Equipping Tomorrow's Innovations with Data Science, AI, and Business Analytics</p>
+                            <p class="location">Batangas Information Technology Society</p>
                         </div>
                     </div>
                     <div class="timeline-item">
                         <div class="timeline-header">
-                            <span class="timeline-date">November 2023</span>
+                            <span class="timeline-date">November 2024</span>
                         </div>
                         <div class="timeline-body">
-                            <h3>Batangas Information Technology Conference</h3>
+                            <h3>BITCON 2024</h3>
+                            <p class="track">Navigating the Future of Technology: Integration, Innovation, and Security</p>
+                            <p class="location">Batangas Information Technology Society</p>
                         </div>
                     </div>
                     <!-- FlexPHD Webinar Series -->
                     <div class="timeline-item">
                         <div class="timeline-header">
-                            <span class="timeline-date">February 15, 2023</span>
-                        </div>
-                        <div class="timeline-body">
-                            <h3>FlexPHD: Food is Life EXemplified (Webinar No. 3)</h3>
-                            <p class="track">Using Digital Technology for Making Data- and Values-Driven Food Choices</p>
-                            <p class="location">SEAMEO SEARCA & NAST PHL</p>
-                        </div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-header">
-                            <span class="timeline-date">February 8, 2023</span>
+                            <span class="timeline-date">February 2023</span>
                         </div>
                         <div class="timeline-body">
                             <h3>FlexPHD: Food is Life EXemplified</h3>
-                            <p class="track">Genes, Nutrition, and Underutilized Plants</p>
-                            <p class="location">SEAMEO SEARCA & NAST PHL</p>
-                        </div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-header">
-                            <span class="timeline-date">February 1, 2023</span>
-                        </div>
-                        <div class="timeline-body">
-                            <h3>FlexPHD: Food is Life EXemplified (Webinar No. 1)</h3>
-                            <p class="track">Diets, Economy, Environment, and Local Culture</p>
+                            <p class="track">Using Digital Technology for Making Data- and Values-Driven Food Choices</p>
                             <p class="location">SEAMEO SEARCA & NAST PHL</p>
                         </div>
                     </div>
@@ -345,6 +349,7 @@
                     <button type="submit" class="btn">Send Message</button>
                     <p id="form-status"></p>
                 </form>
+
                 <!-- Social Links -->
                 <div class="social-links">
                     <a href="https://www.facebook.com/giand.299404" target="_blank" aria-label="Facebook">
@@ -384,6 +389,7 @@
                     </a>
                 </div>
             </section>
+
             <footer>
                 <p>&copy; 2026 Gian Carlo Diaz. All rights reserved.</p>
             </footer>

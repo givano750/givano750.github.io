@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function updateThemeIcon(theme) {
         if (themeIcon) {
-            themeIcon.textContent = theme === 'dark' ? '☀️' : '🌓';
+            themeIcon.textContent = theme === 'dark' ? '☀️' : '🌙';
         }
     }
 
@@ -32,7 +32,41 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 2. Active Section Navigation Highlight on Scroll
+    // 2. Mobile Menu Toggle Logic
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const sidebar = document.getElementById('sidebar');
+
+    if (mobileMenuBtn && sidebar) {
+        mobileMenuBtn.addEventListener('click', () => {
+            sidebar.classList.toggle('active');
+            const lines = mobileMenuBtn.querySelectorAll('.hamburger-line');
+            if (sidebar.classList.contains('active')) {
+                lines[0].style.transform = 'translateY(8px) rotate(45deg)';
+                lines[1].style.opacity = '0';
+                lines[2].style.transform = 'translateY(-8px) rotate(-45deg)';
+            } else {
+                lines[0].style.transform = 'none';
+                lines[1].style.opacity = '1';
+                lines[2].style.transform = 'none';
+            }
+        });
+
+        // Close sidebar when clicking nav links on mobile
+        const navLinksList = sidebar.querySelectorAll('.nav-link');
+        navLinksList.forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 992) {
+                    sidebar.classList.remove('active');
+                    const lines = mobileMenuBtn.querySelectorAll('.hamburger-line');
+                    lines[0].style.transform = 'none';
+                    lines[1].style.opacity = '1';
+                    lines[2].style.transform = 'none';
+                }
+            });
+        });
+    }
+
+    // 3. Active Section Navigation Highlight on Scroll
     const sections = document.querySelectorAll('main section');
     const navLinks = document.querySelectorAll('.nav-link');
 
@@ -53,7 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 3. Contact Form Logic with Cooldown
+    // 4. Contact Form Logic with Cooldown
     const showFormBtn = document.getElementById('show-form-btn');
     const contactForm = document.getElementById('contact-form');
     const formStatus = document.getElementById('form-status');
@@ -67,7 +101,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         contactForm.addEventListener('submit', async (e) => {
             e.preventDefault();
-
             const COOLDOWN_TIME = 60 * 60 * 1000;
             const lastSendTime = localStorage.getItem('last_submission_time');
             const now = Date.now();
@@ -84,8 +117,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const emailInput = contactForm.querySelector('input[type="email"]');
             const submitBtn = contactForm.querySelector('button[type="submit"]');
             const emailValue = emailInput ? emailInput.value.trim() : '';
-
             const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
             if (!emailRegex.test(emailValue)) {
                 if (formStatus) {
                     formStatus.textContent = "Please enter a valid email address.";
