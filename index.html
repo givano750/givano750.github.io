@@ -3,98 +3,392 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>[Your Name] - Portfolio</title>
-    <link rel="stylesheet" href="styles.css">
+    <meta name="description" content="Portfolio of Gian Carlo Diaz - Information Technology Student specializing in Business Analytics and Back-End Development.">
+    <meta name="author" content="Gian Carlo Diaz">
+
+    <!-- Open Graph / Social Media Preview -->
+    <meta property="og:title" content="Gian Carlo Diaz - Portfolio">
+    <meta property="og:description" content="IT Student & Backend Developer specializing in scalable web architecture, databases, and analytics.">
+    <meta property="og:image" content="Pictures/me.jpg">
+    <meta property="og:type" content="website">
+
+    <title>Gian Carlo Diaz - Portfolio</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <div class="logo">[Your Name]</div>
-        <nav>
-            <a href="#about">About</a>
-            <a href="#projects">Projects</a>
-            <a href="#contact">Contact</a>
-            <button id="theme-toggle" aria-label="Toggle Dark Mode">🌓</button>
-        </nav>
-    </header>
-
-    <main>
-        <section id="about" class="hero">
-            <div class="hero-content">
-                <h1>Hi, I'm <span class="accent">[Your Name]</span>.</h1>
-                <p>I am a [Your Profession] specializing in [Your Skill/Niche]. I build clean, minimalist, and functional experiences.</p>
-                <a href="#contact" class="btn">Get in touch</a>
-            </div>
-            <div class="profile-pic">
-                <img src="https://via.placeholder.com/180" alt="Profile Picture of [Your Name]">
-            </div>
-        </section>
-        <section id="projects">
-            <h2>Selected Work</h2>
-            <div class="project-grid">
-                <div class="project-card">
-                    <h3>[Project Name 1]</h3>
-                    <p>[Short description of the project and your role.]</p>
-                    <a href="#" class="project-link">View Project &rarr;</a>
+    <div class="layout-container">
+        <!-- Sidebar Navigation -->
+        <header class="sidebar">
+            <div class="sidebar-top">
+                <div class="brand">
+                    <div class="logo">Gian Carlo Diaz</div>
+                    <p class="sidebar-subtitle">IT Student & Full-Stack Developer</p>
                 </div>
-                <div class="project-card">
-                    <h3>[Project Name 2]</h3>
-                    <p>[Short description of the project and your role.]</p>
-                    <a href="#" class="project-link">View Project &rarr;</a>
-                </div>
-                <div class="project-card">
-                    <h3>[Project Name 3]</h3>
-                    <p>[Short description of the project and your role.]</p>
-                    <a href="#" class="project-link">View Project &rarr;</a>
-                </div>
+                <nav>
+                    <a href="#about" class="nav-link">About</a>
+                    <a href="#education" class="nav-link">Education</a>
+                    <a href="#skills" class="nav-link">Skills</a>
+                    <a href="#projects" class="nav-link">Projects</a>
+                    <a href="#seminars" class="nav-link">Seminars</a>
+                    <a href="#contact" class="nav-link">Contact</a>
+                </nav>
             </div>
-        </section>
+            <div class="sidebar-bottom">
+                <div class="sidebar-divider"></div>
+                <button id="theme-toggle" aria-label="Toggle Dark Mode">
+                    <span class="theme-icon">🌙</span>
+                    <span>Toggle Theme</span>
+                </button>
+            </div>
+        </header>
 
-        <section id="contact">
-            <h2>Let's Connect</h2>
-            <p>I'm currently open for new opportunities. Feel free to reach out!</p>
-            
-            <button type="button" id="show-form-btn" class="btn">Email Me!</button>
+        <!-- Main Content Area -->
+        <main class="content">
+            <!-- Hero / About Section -->
+            <section id="about" class="hero">
+                <div class="profile-pic">
+                    <img src="assets/me.jpg" alt="Profile Picture of Gian Carlo Diaz">
+                </div>
+                <div class="hero-content">
+                    <h1>Hi, I'm <span class="accent">Gian Carlo Diaz</span>.</h1>
+                    <p>I am an Information Technology student specializing in <strong>Business Analytics</strong> and <strong>Full-Stack Development</strong>. I focus on building scalable web application architectures, managing databases, and designing real-time interactive systems.</p>
+                    <div class="hero-cta">
+                        <a href="#contact" class="btn">Get in touch</a>
+                        <a href="assets/CV.pdf" target="_blank" class="btn btn-outline">Download CV</a>
+                    </div>
+                </div>
+            </section>
 
-            <form id="contact-form" class="hidden" action="https://formspree.io/f/xppprqkd" method="POST">
-                <input type="text" name="name" placeholder="Your Name" required>
-                <input type="email" name="email" placeholder="Your Email" required>
-                <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
-                <button type="submit" class="btn">Send Message</button>
-                <p id="form-status"></p>
-            </form>
-        </section>
-    </main>
+            <!-- Education Timeline -->
+            <section id="education">
+                <h2>Education</h2>
+                <div class="timeline-list">
+                    <!-- College -->
+                    <div class="timeline-item">
+                        <div class="timeline-header">
+                            <span class="timeline-date">2023 – Present</span>
+                            <span class="status-badge">Current</span>
+                        </div>
+                        <div class="timeline-body">
+                            <h3>Batangas State University - Lipa Campus</h3>
+                            <p class="degree">Bachelor of Science in Information Technology</p>
+                            <p class="track">Business Analytics Track</p>
+                            <p class="location">Marawoy, Lipa City</p>
+                        </div>
+                    </div>
+                    <!-- High School -->
+                    <div class="timeline-item">
+                        <div class="timeline-header">
+                            <span class="timeline-date">2017 – 2023</span>
+                        </div>
+                        <div class="timeline-body">
+                            <h3>The Mabini Academy</h3>
+                            <p class="degree">High School / Senior High School</p>
+                            <p class="track">Science, Technology, Engineering, and Mathematics (STEM)</p>
+                            <p class="location">Balintawak, Lipa City</p>
+                        </div>
+                    </div>
+                    <!-- Elementary -->
+                    <div class="timeline-item">
+                        <div class="timeline-header">
+                            <span class="timeline-date">2011 – 2017</span>
+                        </div>
+                        <div class="timeline-body">
+                            <h3>Gaudencio B. Lontok Memorial School</h3>
+                            <p class="degree">Elementary Education</p>
+                            <p class="location">Sabang, Lipa City</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-<footer>
-        <div class="social-links">
-            <a href="https://facebook.com/[your-username]" target="_blank" aria-label="Facebook">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
-                </svg>
-            </a>
-            <a href="https://instagram.com/[your-username]" target="_blank" aria-label="Instagram">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-                </svg>
-            </a>
-            <a href="https://linkedin.com/in/[your-username]" target="_blank" aria-label="LinkedIn">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
-                    <rect x="2" y="9" width="4" height="12"></rect>
-                    <circle cx="4" cy="4" r="2"></circle>
-                </svg>
-            </a>
-            <a href="https://github.com/[your-username]" target="_blank" aria-label="GitHub">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-                </svg>
-            </a>
-        </div>
-        <p>&copy; 2026 [Your Name]. All rights reserved.</p>
-    </footer>
+            <!-- Skills & Tech Stack Section -->
+            <section id="skills">
+                <h2>Skills & Tech Stack</h2>
+                
+                <div class="skills-group">
+                    <h3>Technologies & Languages</h3>
+                    <div class="skills-badges tech-stack-badges">
+                        <span>HTML</span>
+                        <span>CSS</span>
+                        <span>JavaScript</span>
+                        <span>php</span>
+                        <span>React</span>
+                        <span>SQL</span>
+                        <span>Python</span>
+                        <span>Dart</span>
+                        <span>Flutter</span>
+                    </div>
+                </div>
+                <div class="skills-group">
+                    <h3>Development & Architecture</h3>
+                    <div class="skills-badges">
+                        <span>Back-End Development</span>
+                        <span>System Architecture Design</span>
+                        <span>REST API Development</span>
+                        <span>Database Management</span>
+                        <span>GitHub Version Control</span>
+                        <span>UI/UX Prototyping</span>
+                    </div>
+                </div>
+                <div class="skills-group">
+                    <h3>Analytics & Requirements</h3>
+                    <div class="skills-badges">
+                        <span>Business Analytics</span>
+                        <span>Predictive Modeling</span>
+                        <span>Data Visualization & Reporting</span>
+                        <span>Requirements Gathering</span>
+                        <span>Problem Solving</span>
+                    </div>
+                </div>
+                <div class="skills-group">
+                    <h3>Technical & Interests</h3>
+                    <div class="skills-badges">
+                        <span>Hardware Repair (Phones & Laptops)</span>
+                        <span>Technology</span>
+                        <span>Gaming</span>
+                        <span>Music</span>
+                        <span>Reading</span>
+                        <span>Driving</span>
+                    </div>
+                </div>
+            </section>
 
+            <!-- Projects Section -->
+            <section id="projects">
+                <h2>Projects</h2>
+                <div class="project-grid">
+                    <!-- BSU-Trace -->
+                    <div class="project-card">
+                        <div class="project-header">
+                            <h3>BSU-Trace</h3>
+                            <span class="role-badge">Front-end & Back-end Developer</span>
+                        </div>
+                        <div class="project-date">December 2026</div>
+                        <div class="tech-stack">
+                            <span>React</span>
+                            <span>Python</span>
+                            <span>WebSockets</span>
+                            <span>Vercel</span>
+                            <span>Render</span>
+                            <span>Neon</span>
+                        </div>
+                        <p>Progressive Web App featuring WebSocket architecture for low-latency, real-time sync between the core platform and a companion mobile scanner, with refactored backend architecture for high maintainability and security.</p>
+                        <div class="project-links">
+                            <a href="https://bsu-trace-pwa.vercel.app" target="_blank" rel="noopener noreferrer" class="project-link">Live Demo &rarr;</a>
+                            <a href="https://github.com/denise-refuerzo/BSU-TRACE-PWA" target="_blank" rel="noopener noreferrer" class="project-link secondary">Source Code &rarr;</a>
+                        </div>
+                    </div>
+                    <!-- BREADLY -->
+                    <div class="project-card">
+                        <div class="project-header">
+                            <h3>BREADLY</h3>
+                            <span class="role-badge">Main Developer</span>
+                        </div>
+                        <div class="project-date">December 2025</div>
+                        <div class="tech-stack">
+                            <span>PHP</span>
+                            <span>JavaScript</span>
+                            <span>Tailwind CSS</span>
+                            <span>HTML</span>
+                        </div>
+                        <p>End-to-end POS and Inventory Management System featuring real-time product tracking, stock management workflows, and automated transaction processing deployed on Hostinger.</p>
+                        <div class="project-links">
+                            <a href="https://github.com/camilegrace425/breadly" target="_blank" rel="noopener noreferrer" class="project-link">Source Code &rarr;</a>
+                        </div>
+                    </div>
+                    <!-- Healthcare Data Management System -->
+                    <div class="project-card">
+                        <div class="project-header">
+                            <h3>Healthcare Data Management</h3>
+                            <span class="role-badge">Backend Developer</span>
+                        </div>
+                        <div class="project-date">May 2025</div>
+                        <div class="tech-stack">
+                            <span>PHP</span>
+                            <span>PostgreSQL</span>
+                            <span>JavaScript</span>
+                            <span>HTML</span>
+                            <span>CSS</span>
+                        </div>
+                        <p>Web-based platform built for remote communities to securely manage patient records, medical personnel information, and decision-support analytics dashboards.</p>
+                        <div class="project-links">
+                            <a href="https://github.com/givano750/Healthcare-Data-Management-System-for-Remote-Community" target="_blank" rel="noopener noreferrer" class="project-link">Source Code &rarr;</a>
+                        </div>
+                    </div>
+                    <!-- CLAVEM -->
+                    <div class="project-card">
+                        <div class="project-header">
+                            <h3>CLAVEM</h3>
+                            <span class="role-badge">Co-Developer</span>
+                        </div>
+                        <div class="project-date">December 2024</div>
+                        <div class="tech-stack">
+                            <span>PHP</span>
+                            <span>PostgreSQL</span>
+                            <span>HTML</span>
+                            <span>CSS</span>
+                        </div>
+                        <p>Comprehensive real-estate management platform facilitating digital property browsing, automated client inquiry tracking, and scheduling for site visits and ocular inspections.</p>
+                        <div class="project-links">
+                            <a href="https://github.com/givano750/Real-Estate-Platform-Using-PHP-for-Property-Listings-and-Management" target="_blank" rel="noopener noreferrer" class="project-link">Source Code &rarr;</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- GitHub Activity Section -->
+            <section id="github-activity" class="github-section">
+                <h2>GitHub Activity</h2>
+                <link rel="stylesheet" href="https://unpkg.com/github-calendar@latest/dist/github-calendar-responsive.css" />
+                <script src="https://unpkg.com/github-calendar@latest/dist/github-calendar.min.js"></script>
+                <div class="github-calendar-box">
+                    <div class="calendar">
+                        Loading GitHub contributions...
+                    </div>
+                </div>
+                <script>
+                    GitHubCalendar(".calendar", "givano750", { 
+                        responsive: true,
+                        summary_text: ' '
+                    });
+                </script>
+            </section>
+
+            <!-- Seminars Section -->
+            <section id="seminars">
+                <h2>Seminars & Conferences</h2>
+                <div class="timeline-list">
+                    <div class="timeline-item">
+                        <div class="timeline-header">
+                            <span class="timeline-date">March 2026</span>
+                        </div>
+                        <div class="timeline-body">
+                            <h3>Batangas Information Technology Conference</h3>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-header">
+                            <span class="timeline-date">October 2025</span>
+                        </div>
+                        <div class="timeline-body">
+                            <h3>DATABIZ Conference</h3>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-header">
+                            <span class="timeline-date">April 2025</span>
+                        </div>
+                        <div class="timeline-body">
+                            <h3>Batangas Information Technology Conference</h3>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-header">
+                            <span class="timeline-date">April 2024</span>
+                        </div>
+                        <div class="timeline-body">
+                            <h3>Batangas Information Technology Conference</h3>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-header">
+                            <span class="timeline-date">November 2023</span>
+                        </div>
+                        <div class="timeline-body">
+                            <h3>Batangas Information Technology Conference</h3>
+                        </div>
+                    </div>
+                    <!-- FlexPHD Webinar Series -->
+                    <div class="timeline-item">
+                        <div class="timeline-header">
+                            <span class="timeline-date">February 15, 2023</span>
+                        </div>
+                        <div class="timeline-body">
+                            <h3>FlexPHD: Food is Life EXemplified (Webinar No. 3)</h3>
+                            <p class="track">Using Digital Technology for Making Data- and Values-Driven Food Choices</p>
+                            <p class="location">SEAMEO SEARCA & NAST PHL</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-header">
+                            <span class="timeline-date">February 8, 2023</span>
+                        </div>
+                        <div class="timeline-body">
+                            <h3>FlexPHD: Food is Life EXemplified</h3>
+                            <p class="track">Genes, Nutrition, and Underutilized Plants</p>
+                            <p class="location">SEAMEO SEARCA & NAST PHL</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-header">
+                            <span class="timeline-date">February 1, 2023</span>
+                        </div>
+                        <div class="timeline-body">
+                            <h3>FlexPHD: Food is Life EXemplified (Webinar No. 1)</h3>
+                            <p class="track">Diets, Economy, Environment, and Local Culture</p>
+                            <p class="location">SEAMEO SEARCA & NAST PHL</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contact Section -->
+            <section id="contact">
+                <h2>Let's Connect</h2>
+                <p>I'm currently open for new opportunities. Feel free to reach out!</p>
+                <button type="button" id="show-form-btn" class="btn">Email Me</button>
+                <form id="contact-form" class="hidden" action="https://formspree.io/f/xppprqkd" method="POST">
+                    <input type="text" name="name" placeholder="Your Name" required>
+                    <input type="email" name="email" placeholder="Your Email" required>
+                    <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+                    <button type="submit" class="btn">Send Message</button>
+                    <p id="form-status"></p>
+                </form>
+                <!-- Social Links -->
+                <div class="social-links">
+                    <a href="https://www.facebook.com/giand.299404" target="_blank" aria-label="Facebook">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                        </svg>
+                        <span>Gian Carlo Diaz</span>
+                    </a>
+                    <a href="https://www.instagram.com/jiyaaanc" target="_blank" aria-label="Instagram">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                        </svg>
+                        <span>@jiyaaanc</span>
+                    </a>
+                    <a href="https://ph.linkedin.com/in/gian-carlo-diaz-a56909292" target="_blank" aria-label="LinkedIn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a22 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                            <rect x="2" y="9" width="4" height="12"></rect>
+                            <circle cx="4" cy="4" r="2"></circle>
+                        </svg>
+                        <span>Gian Carlo Diaz</span>
+                    </a>
+                    <a href="https://github.com/givano750" target="_blank" aria-label="GitHub">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                        </svg>
+                        <span>givano750</span>
+                    </a>
+                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=giancarlondiaz@gmail.com" target="_blank" aria-label="Gmail">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                            <polyline points="22,6 12,13 2,6"></polyline>
+                        </svg>
+                        <span>giancarlondiaz@gmail.com</span>
+                    </a>
+                </div>
+            </section>
+            <footer>
+                <p>&copy; 2026 Gian Carlo Diaz. All rights reserved.</p>
+            </footer>
+        </main>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>
