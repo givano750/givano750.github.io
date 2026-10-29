@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     clipPath: clipPath,
                 },
                 {
-                    duration: 450, // Accelerated for snappier feel
+                    duration: 450,
                     easing: 'cubic-bezier(0.25, 1, 0.5, 1)',
                     pseudoElement: '::view-transition-new(root)',
                 }
@@ -150,7 +150,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     sections.forEach(section => fadeObserver.observe(section));
 
-    // Debounced Scroll Spy for Performance
     let scrollTimeout;
     window.addEventListener('scroll', () => {
         if (scrollTimeout) return;
@@ -164,9 +163,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
             navLinks.forEach(link => {
+                const indicator = link.querySelector('.nav-indicator');
                 link.classList.remove('active');
+                if (indicator) indicator.classList.add('opacity-0');
+
                 if (link.getAttribute('href') === `#${currentSection}`) {
                     link.classList.add('active');
+                    if (indicator) indicator.classList.remove('opacity-0');
                 }
             });
         }, 50);
@@ -232,7 +235,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     localStorage.setItem('last_submission_time', Date.now());
                     if (formStatus) {
                         formStatus.textContent = "Message sent successfully!";
-                        formStatus.className = 'text-sm font-medium mt-2 text-green-500';
+                        formStatus.className = 'text-sm font-medium mt-2 text-emerald-500';
                     }
                     contactForm.reset();
                 } else {
@@ -250,7 +253,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ==========================================
-    // 6. Optimized Interactive Background Canvas
+    // 6. Interactive Background Canvas System
     // ==========================================
     const canvas = document.getElementById('bg-canvas');
     if (canvas) {
@@ -259,9 +262,9 @@ document.addEventListener('DOMContentLoaded', () => {
         let isDarkMode = rootElement.classList.contains('dark');
         
         const config = {
-            particleCount: Math.min(window.innerWidth / 20, 50), // Optimized density for better FPS
+            particleCount: Math.min(window.innerWidth / 20, 200),
             maxDistance: 120,
-            mouseRadius: 110,
+            mouseRadius: 120,
             baseColorLight: 'rgba(0, 0, 0, ',
             baseColorDark: 'rgba(255, 255, 255, '
         };
@@ -292,9 +295,9 @@ document.addEventListener('DOMContentLoaded', () => {
             constructor() {
                 this.x = Math.random() * canvas.width;
                 this.y = Math.random() * canvas.height;
-                this.vx = (Math.random() - 0.5) * 0.5;
-                this.vy = (Math.random() - 0.5) * 0.5;
-                this.size = Math.random() * 1.5 + 1;
+                this.vx = (Math.random() - 0.5) * 0.7;
+                this.vy = (Math.random() - 0.5) * 0.7;
+                this.size = Math.random() * 1.5 + 1.5;
             }
             update() {
                 this.x += this.vx;
@@ -308,8 +311,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     let distance = Math.sqrt(dx * dx + dy * dy);
                     if (distance < config.mouseRadius) {
                         const force = (config.mouseRadius - distance) / config.mouseRadius;
-                        this.x -= (dx / distance) * force * 1.5;
-                        this.y -= (dy / distance) * force * 1.5;
+                        this.x -= (dx / distance) * force * 1.6;
+                        this.y -= (dy / distance) * force * 1.6;
                     }
                 }
             }

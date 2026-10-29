@@ -5,12 +5,12 @@ html, body {
     transition: background-color 0.4s ease, color 0.4s ease;
 }
 
-/* Optimized Performance: Target only specific interactive elements instead of all elements to prevent layout thrashing */
-a, button, input, textarea, .glass-panel, header, section {
-    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+/* Specific Interactive Transitions */
+a, button, input, textarea, .glass-panel, header, section, .tech-chip {
+    transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
 }
 
-/* Geometric Interactive Background Canvas */
+/* Background Canvas */
 #bg-canvas {
     position: fixed;
     top: 0;
@@ -22,7 +22,36 @@ a, button, input, textarea, .glass-panel, header, section {
     will-change: transform;
 }
 
-/* Minimalist Scrollbar */
+/* Tech Chips Badge Style */
+.tech-chip {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.4rem 0.85rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.025em;
+    border-radius: 0.75rem;
+    background-color: rgba(244, 244, 245, 1);
+    border: 1px solid rgba(228, 228, 231, 1);
+    color: #18181b;
+}
+
+.dark .tech-chip {
+    background-color: rgba(18, 18, 18, 1);
+    border-color: rgba(39, 39, 42, 1);
+    color: #f4f4f5;
+}
+
+.tech-chip:hover {
+    border-color: #000000;
+    transform: translateY(-2px);
+}
+
+.dark .tech-chip:hover {
+    border-color: #ffffff;
+}
+
+/* Scrollbar styling */
 ::-webkit-scrollbar {
     width: 6px;
     height: 6px;
@@ -35,10 +64,10 @@ a, button, input, textarea, .glass-panel, header, section {
     border-radius: 10px;
 }
 .dark ::-webkit-scrollbar-thumb {
-    background: #333333;
+    background: #27272a;
 }
 
-/* Circular Sweeping View Transition Performance Layer */
+/* View Transition Root Animation Override */
 ::view-transition-old(root),
 ::view-transition-new(root) {
   animation: none;
@@ -60,10 +89,17 @@ a, button, input, textarea, .glass-panel, header, section {
 
 /* Active Nav State */
 .nav-link.active {
-    @apply bg-gray-200 dark:bg-darkCard text-black dark:text-white font-bold pl-6;
+    background-color: #f4f4f5;
+    color: #000000;
+    font-weight: 700;
 }
 
-/* Mobile Menu Hamburger Animation active state */
+.dark .nav-link.active {
+    background-color: #111111;
+    color: #ffffff;
+}
+
+/* Mobile Hamburger Animation */
 .menu-active span:nth-child(1) {
     transform: translateY(7px) rotate(45deg);
 }
@@ -91,9 +127,7 @@ a, button, input, textarea, .glass-panel, header, section {
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* ==========================================
-   GitHub Calendar Custom Styling
-   ========================================== */
+/* GitHub Calendar Custom Responsive Overrides */
 .calendar, .calendar .Box, .calendar .border, .calendar .js-calendar-graph, .calendar .color-border-default {
     border: none !important;
     background: transparent !important;
@@ -182,7 +216,7 @@ a, button, input, textarea, .glass-panel, header, section {
     .calendar .contrib-legend .ContributionCalendar-day { width: 10px !important; height: 10px !important; }
 }
 
-/* Dark/Light Mode Cell Colors */
+/* GitHub Heatmap Color Palette */
 .calendar td.ContributionCalendar-day[data-level="0"] { fill: #ebedf0 !important; background-color: #ebedf0 !important; }
 .calendar td.ContributionCalendar-day[data-level="1"] { fill: #9be9a8 !important; background-color: #9be9a8 !important; }
 .calendar td.ContributionCalendar-day[data-level="2"] { fill: #40c463 !important; background-color: #40c463 !important; }
@@ -195,7 +229,7 @@ a, button, input, textarea, .glass-panel, header, section {
 .dark .calendar td.ContributionCalendar-day[data-level="3"] { fill: #26a641 !important; background-color: #26a641 !important; }
 .dark .calendar td.ContributionCalendar-day[data-level="4"] { fill: #39d353 !important; background-color: #39d353 !important; }
 
-/* Modern Tooltip Styling */
+/* Tooltip Styling */
 .github-calendar-tooltip {
     background-color: #111111 !important;
     color: #ffffff !important;
