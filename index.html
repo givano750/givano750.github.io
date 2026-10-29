@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-    <meta name="description" content="Portfolio of Gian Carlo Diaz - Information Technology Student specializing in Business Analytics and Back-End Development.">
+    <meta name="description" content="Portfolio of Gian Carlo Diaz - Information Technology Student specializing in Business Analytics and Development.">
     <meta name="author" content="Gian Carlo Diaz">
-    
+         
     <!-- Open Graph / Social Media Preview -->
     <meta property="og:title" content="Gian Carlo Diaz - Portfolio">
-    <meta property="og:description" content="IT Student & Backend Developer specializing in scalable web architecture, databases, and analytics.">
+    <meta property="og:description" content="IT Student & Developer specializing in scalable web architecture, databases, and analytics.">
     <meta property="og:image" content="assets/me.jpg">
     <meta property="og:type" content="website">
     <title>Gian Carlo Diaz - Portfolio</title>
-    
+         
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -35,58 +35,54 @@
             }
         }
     </script>
-    
+         
     <!-- Custom CSS -->
     <link rel="stylesheet" href="style.css">
-    
+         
     <!-- GitHub Calendar Assets -->
     <link rel="stylesheet" href="https://unpkg.com/github-calendar@latest/dist/github-calendar-responsive.css" />
     <script src="https://unpkg.com/github-calendar@latest/dist/github-calendar.min.js"></script>
 </head>
-<body class="bg-lightBg text-gray-900 dark:bg-darkBg dark:text-gray-100 antialiased overflow-x-hidden">
-    
-    <!-- Matrix Theme Transition Canvas (Absolute Bottom Layer) -->
-    <canvas id="theme-transition-canvas" class="fixed inset-0 pointer-events-none z-0 opacity-0 transition-opacity duration-300"></canvas>
+<body class="bg-lightBg text-gray-900 dark:bg-darkBg dark:text-gray-100 antialiased overflow-x-hidden selection:bg-black selection:text-white dark:selection:bg-white dark:selection:text-black">
+
     <!-- Geometric & Matrix Transition Background Canvas -->
     <canvas id="bg-canvas" class="fixed inset-0 pointer-events-none z-0"></canvas>
-
+    
     <div class="flex min-h-screen relative z-10 w-full">
-        
         <!-- Mobile Menu Toggle Button -->
-        <button id="mobile-menu-btn" class="lg:hidden fixed top-4 left-4 z-[100] p-3 bg-white/90 dark:bg-darkCard/95 backdrop-blur border border-lightBorder dark:border-darkBorder rounded-xl shadow-lg flex flex-col gap-[5px] w-[46px] h-[46px] justify-center items-center group cursor-pointer transition-all duration-500" aria-label="Toggle Navigation Menu">
+        <button id="mobile-menu-btn" class="lg:hidden fixed top-4 left-4 z-[100] p-3 bg-white/90 dark:bg-darkCard/95 backdrop-blur border border-lightBorder dark:border-darkBorder rounded-xl shadow-lg flex flex-col gap-[5px] w-[46px] h-[46px] justify-center items-center group cursor-pointer transition-all duration-300" aria-label="Toggle Navigation Menu">
             <span class="w-6 h-[2px] bg-black dark:bg-white transition-all duration-300 transform origin-center"></span>
             <span class="w-6 h-[2px] bg-black dark:bg-white transition-all duration-300 transform origin-center"></span>
             <span class="w-6 h-[2px] bg-black dark:bg-white transition-all duration-300 transform origin-center"></span>
         </button>
+
         <!-- Mobile Backdrop Overlay -->
         <div id="menu-backdrop" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-40 opacity-0 pointer-events-none transition-opacity duration-300 lg:hidden"></div>
 
         <!-- Sidebar Navigation -->
-        <header class="fixed top-0 left-0 h-screen w-72 glass-panel border-r border-lightBorder dark:border-darkBorder bg-white/90 dark:bg-darkBg/95 backdrop-blur-md flex flex-col justify-between p-6 md:p-8 transform -translate-x-full lg:translate-x-0 transition-transform duration-500 z-50 shadow-2xl lg:shadow-none" id="sidebar">
+        <header class="fixed top-0 left-0 h-screen w-72 glass-panel border-r border-lightBorder dark:border-darkBorder bg-white/90 dark:bg-darkBg/95 backdrop-blur-md flex flex-col justify-between p-6 md:p-8 transform -translate-x-full lg:translate-x-0 transition-transform duration-300 ease-out z-50 shadow-2xl lg:shadow-none" id="sidebar">
             <div>
                 <div class="mb-8 md:mb-10">
                     <h1 class="text-xl md:text-2xl font-bold tracking-tight text-black dark:text-white">Gian Carlo Diaz</h1>
-                    <p class="text-xs md:text-sm font-medium text-gray-500 dark:text-gray-400 mt-2 uppercase tracking-widest">Full-Stack Developer</p>
+                    <p class="text-xs md:text-sm font-medium text-gray-500 dark:text-gray-400 mt-2 uppercase tracking-widest">Developer</p>
                 </div>
                 <nav class="flex flex-col gap-1 md:gap-2">
-                    <a href="#about" class="nav-link text-sm font-medium px-4 py-3 rounded-lg text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-darkCard hover:text-black dark:hover:text-white transition-all duration-300">About</a>
-                    <a href="#education" class="nav-link text-sm font-medium px-4 py-3 rounded-lg text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-darkCard hover:text-black dark:hover:text-white transition-all duration-300">Education</a>
-                    <a href="#skills" class="nav-link text-sm font-medium px-4 py-3 rounded-lg text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-darkCard hover:text-black dark:hover:text-white transition-all duration-300">Skills</a>
-                    <a href="#projects" class="nav-link text-sm font-medium px-4 py-3 rounded-lg text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-darkCard hover:text-black dark:hover:text-white transition-all duration-300">Projects</a>
-                    <a href="#seminars" class="nav-link text-sm font-medium px-4 py-3 rounded-lg text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-darkCard hover:text-black dark:hover:text-white transition-all duration-300">Seminars</a>
-                    <a href="#contact" class="nav-link text-sm font-medium px-4 py-3 rounded-lg text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-darkCard hover:text-black dark:hover:text-white transition-all duration-300">Contact</a>
+                    <a href="#about" class="nav-link text-sm font-medium px-4 py-3 rounded-lg text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-darkCard hover:text-black dark:hover:text-white transition-all duration-200">About</a>
+                    <a href="#education" class="nav-link text-sm font-medium px-4 py-3 rounded-lg text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-darkCard hover:text-black dark:hover:text-white transition-all duration-200">Education</a>
+                    <a href="#skills" class="nav-link text-sm font-medium px-4 py-3 rounded-lg text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-darkCard hover:text-black dark:hover:text-white transition-all duration-200">Skills</a>
+                    <a href="#projects" class="nav-link text-sm font-medium px-4 py-3 rounded-lg text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-darkCard hover:text-black dark:hover:text-white transition-all duration-200">Projects</a>
+                    <a href="#seminars" class="nav-link text-sm font-medium px-4 py-3 rounded-lg text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-darkCard hover:text-black dark:hover:text-white transition-all duration-200">Seminars</a>
+                    <a href="#contact" class="nav-link text-sm font-medium px-4 py-3 rounded-lg text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-darkCard hover:text-black dark:hover:text-white transition-all duration-200">Contact</a>
                 </nav>
             </div>
             <div class="w-full flex items-center justify-center py-2">
                 <label class="relative inline-block w-20 h-10 cursor-pointer" aria-label="Toggle Dark Mode">
                     <input type="checkbox" id="theme-toggle" class="sr-only peer">
-                    <!-- Background Track -->
                     <div class="w-full h-full bg-[#e4e4e7] dark:bg-[#18181b] rounded-full shadow-[inset_0_2px_4px_rgba(0,0,0,0.15)] dark:shadow-[inset_0_2px_4px_rgba(0,0,0,0.5)] transition-colors duration-300"></div>
-                    <!-- Sliding Circular Knob with Icon -->
                     <div class="absolute left-1 top-1 w-10 h-8 rounded-full bg-gradient-to-b from-[#f59e0b] to-[#d97706] dark:from-[#27272a] dark:to-[#09090b] dark:border dark:border-zinc-700 shadow-md flex items-center justify-center transition-transform duration-300 transform peer-checked:translate-x-8">
-                        <!-- Sun Icon (Visible in Light Mode / Unchecked) -->
+                        <!-- Sun Icon -->
                         <svg class="w-3.5 h-3.5 text-white absolute transition-opacity duration-300 dark:opacity-0" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32l1.41 1.41M2 12h2m16 0h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
-                        <!-- Moon Icon (Visible in Dark Mode / Checked) -->
+                        <!-- Moon Icon -->
                         <svg class="w-3.5 h-3.5 text-white absolute opacity-0 transition-opacity duration-300 dark:opacity-100" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
                     </div>
                 </label>
@@ -96,7 +92,7 @@
         <!-- Main Content Area -->
         <main class="w-full lg:pl-72 flex flex-col items-center">
             <div class="w-full max-w-5xl px-5 py-16 md:px-12 md:py-28">
-                
+                                 
                 <!-- Hero / About Section -->
                 <section id="about" class="fade-in flex flex-col-reverse lg:flex-row items-center justify-between gap-10 md:gap-12 mb-24 md:mb-32">
                     <div class="flex-1 text-center lg:text-left w-full">
@@ -104,17 +100,17 @@
                             Hi, I'm <span class="text-black dark:text-white border-b-4 border-gray-300 dark:border-gray-700">Gian Carlo</span>.
                         </h1>
                         <p class="text-base md:text-lg text-gray-600 dark:text-gray-400 mb-8 leading-relaxed max-w-2xl mx-auto lg:mx-0">
-                            I am an Information Technology student specializing in <strong class="text-black dark:text-white font-semibold">Business Analytics</strong> and <strong class="text-black dark:text-white font-semibold">Full-Stack Development</strong>. I focus on building scalable web application architectures, managing databases, and designing real-time interactive systems.
+                            I am an Information Technology student specializing in <strong class="text-black dark:text-white font-semibold">Business Analytics</strong> and <strong class="text-black dark:text-white font-semibold">Web Development</strong>. I focus on building scalable web application architectures, managing databases, and designing real-time interactive systems.
                         </p>
                         <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4">
-                            <a href="#contact" class="w-full sm:w-auto text-center px-8 py-3.5 bg-black dark:bg-white text-white dark:text-black font-semibold rounded-xl hover:bg-gray-800 dark:hover:bg-gray-200 transition-all duration-300 shadow-lg">Get in touch</a>
-                            <a href="assets/CV.pdf" target="_blank" class="w-full sm:w-auto text-center px-8 py-3.5 bg-transparent border border-black dark:border-white text-black dark:text-white font-semibold rounded-xl hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all duration-300">Download CV</a>
+                            <a href="#contact" class="w-full sm:w-auto text-center px-8 py-3.5 bg-black dark:bg-white text-white dark:text-black font-semibold rounded-xl hover:bg-gray-800 dark:hover:bg-gray-200 transition-all duration-200 shadow-lg">Get in touch</a>
+                            <a href="assets/CV.pdf" target="_blank" class="w-full sm:w-auto text-center px-8 py-3.5 bg-transparent border border-black dark:border-white text-black dark:text-white font-semibold rounded-xl hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all duration-200">Download CV</a>
                         </div>
                     </div>
                     <div class="relative group">
-                        <div class="absolute -inset-1 bg-gradient-to-r from-gray-200 to-gray-400 dark:from-gray-800 dark:to-gray-600 rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
+                        <div class="absolute -inset-1 bg-gradient-to-r from-gray-200 to-gray-400 dark:from-gray-800 dark:to-gray-600 rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-500"></div>
                         <div class="relative w-40 h-40 sm:w-48 sm:h-48 lg:w-64 lg:h-64 rounded-2xl overflow-hidden border-2 border-white dark:border-darkBorder shadow-2xl">
-                            <img id="profile-img" src="assets/me-with-shades.jpg" alt="Gian Carlo Diaz" class="w-full h-full object-cover transition-all duration-500">
+                            <img id="profile-img" src="assets/me-with-shades.jpg" alt="Gian Carlo Diaz" class="w-full h-full object-cover transition-opacity duration-300">
                         </div>
                     </div>
                 </section>
@@ -125,32 +121,29 @@
                         <span class="w-8 h-1 bg-black dark:bg-white rounded-full"></span> Education
                     </h2>
                     <div class="relative border-l border-gray-300 dark:border-darkBorder ml-4 space-y-10 md:space-y-12">
-                        <!-- College -->
                         <div class="relative pl-6 md:pl-8">
                             <div class="absolute -left-1.5 top-1.5 w-3 h-3 rounded-full bg-black dark:bg-white ring-4 ring-lightBg dark:ring-darkBg"></div>
                             <div class="flex flex-wrap items-center gap-3 mb-2">
-                                <span class="text-sm font-bold text-gray-500 dark:text-gray-400">2023 — Present</span>
+                                <span class="text-sm font-bold text-gray-500 dark:text-gray-400">2023 - Present</span>
                                 <span class="text-xs font-bold px-3 py-1 bg-gray-200 dark:bg-darkCard text-black dark:text-white rounded-full uppercase tracking-wider">Current</span>
                             </div>
                             <h3 class="text-lg md:text-xl font-bold text-black dark:text-white">Batangas State University - Lipa Campus</h3>
-                            <p class="text-sm md:text-base font-medium text-gray-700 dark:text-gray-300 mt-1">Bachelor of Science in Information Technology</p>
-                            <p class="text-xs md:text-sm text-gray-500 mt-1">Business Analytics Track • Marawoy, Lipa City</p>
+                            <p class="text-sm md:text-base font-medium text-gray-700 dark:text-gray-300 mt-1">Bachelor of Science in Information Technology - Business Analytics Track</p>
+                            <p class="text-xs md:text-sm text-gray-500 mt-1">Marawoy, Lipa City</p>
                         </div>
-                        <!-- High School -->
                         <div class="relative pl-6 md:pl-8">
                             <div class="absolute -left-1.5 top-1.5 w-3 h-3 rounded-full bg-gray-400 dark:bg-gray-600 ring-4 ring-lightBg dark:ring-darkBg"></div>
                             <div class="flex flex-wrap items-center gap-3 mb-2">
-                                <span class="text-sm font-bold text-gray-500 dark:text-gray-400">2017 — 2023</span>
+                                <span class="text-sm font-bold text-gray-500 dark:text-gray-400">2017 - 2023</span>
                             </div>
                             <h3 class="text-lg md:text-xl font-bold text-black dark:text-white">The Mabini Academy</h3>
-                            <p class="text-sm md:text-base font-medium text-gray-700 dark:text-gray-300 mt-1">High School / Senior High School</p>
-                            <p class="text-xs md:text-sm text-gray-500 mt-1">STEM Strand • Balintawak, Lipa City</p>
+                            <p class="text-sm md:text-base font-medium text-gray-700 dark:text-gray-300 mt-1">High School / Senior High School - STEM Strand</p>
+                            <p class="text-xs md:text-sm text-gray-500 mt-1">Balintawak, Lipa City</p>
                         </div>
-                        <!-- Elementary -->
                         <div class="relative pl-6 md:pl-8">
                             <div class="absolute -left-1.5 top-1.5 w-3 h-3 rounded-full bg-gray-400 dark:bg-gray-600 ring-4 ring-lightBg dark:ring-darkBg"></div>
                             <div class="flex flex-wrap items-center gap-3 mb-2">
-                                <span class="text-sm font-bold text-gray-500 dark:text-gray-400">2011 — 2017</span>
+                                <span class="text-sm font-bold text-gray-500 dark:text-gray-400">2011 - 2017</span>
                             </div>
                             <h3 class="text-lg md:text-xl font-bold text-black dark:text-white">Gaudencio B. Lontok Memorial School</h3>
                             <p class="text-sm md:text-base font-medium text-gray-700 dark:text-gray-300 mt-1">Elementary Education</p>
@@ -160,66 +153,59 @@
                 </section>
 
                 <!-- Skills & Tech Stack Section -->
-                 <section id="skills" class="fade-in mb-24 md:mb-32">
-                     <h2 class="text-2xl md:text-3xl font-bold mb-8 md:mb-10 tracking-tight flex items-center gap-4">
-                         <span class="w-8 h-1 bg-black dark:bg-white rounded-full"></span> Skills & Tech Stack
-                     </h2>
-                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-                         <!-- Technologies & Languages -->
-                         <div class="bg-lightCard dark:bg-darkCard border border-lightBorder dark:border-darkBorder p-6 md:p-8 rounded-2xl shadow-sm">
-                             <h3 class="text-xs font-bold uppercase tracking-widest text-gray-500 mb-6">Technologies & Languages</h3>
-                             <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
-                                 <div class="p-3 bg-lightBg dark:bg-darkBg border border-lightBorder dark:border-darkBorder rounded-xl text-center font-semibold text-xs tracking-wider uppercase hover:border-black dark:hover:border-white transition-all duration-300">HTML</div>
-                                 <div class="p-3 bg-lightBg dark:bg-darkBg border border-lightBorder dark:border-darkBorder rounded-xl text-center font-semibold text-xs tracking-wider uppercase hover:border-black dark:hover:border-white transition-all duration-300">CSS</div>
-                                 <div class="p-3 bg-lightBg dark:bg-darkBg border border-lightBorder dark:border-darkBorder rounded-xl text-center font-semibold text-xs tracking-wider uppercase hover:border-black dark:hover:border-white transition-all duration-300">JavaScript</div>
-                                 <div class="p-3 bg-lightBg dark:bg-darkBg border border-lightBorder dark:border-darkBorder rounded-xl text-center font-semibold text-xs tracking-wider uppercase hover:border-black dark:hover:border-white transition-all duration-300">PHP</div>
-                                 <div class="p-3 bg-lightBg dark:bg-darkBg border border-lightBorder dark:border-darkBorder rounded-xl text-center font-semibold text-xs tracking-wider uppercase hover:border-black dark:hover:border-white transition-all duration-300">React</div>
-                                 <div class="p-3 bg-lightBg dark:bg-darkBg border border-lightBorder dark:border-darkBorder rounded-xl text-center font-semibold text-xs tracking-wider uppercase hover:border-black dark:hover:border-white transition-all duration-300">SQL</div>
-                                 <div class="p-3 bg-lightBg dark:bg-darkBg border border-lightBorder dark:border-darkBorder rounded-xl text-center font-semibold text-xs tracking-wider uppercase hover:border-black dark:hover:border-white transition-all duration-300">Python</div>
-                                 <div class="p-3 bg-lightBg dark:bg-darkBg border border-lightBorder dark:border-darkBorder rounded-xl text-center font-semibold text-xs tracking-wider uppercase hover:border-black dark:hover:border-white transition-all duration-300">Dart</div>
-                                 <div class="p-3 bg-lightBg dark:bg-darkBg border border-lightBorder dark:border-darkBorder rounded-xl text-center font-semibold text-xs tracking-wider uppercase hover:border-black dark:hover:border-white transition-all duration-300">Flutter</div>
-                             </div>
-                         </div>
-
-                         <!-- Development & Architecture -->
-                         <div class="bg-lightCard dark:bg-darkCard border border-lightBorder dark:border-darkBorder p-6 md:p-8 rounded-2xl shadow-sm">
-                             <h3 class="text-xs font-bold uppercase tracking-widest text-gray-500 mb-6">Development & Architecture</h3>
-                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                                 <div class="p-3 bg-lightBg dark:bg-darkBg border border-lightBorder dark:border-darkBorder rounded-xl text-center font-semibold text-xs tracking-wider uppercase hover:border-black dark:hover:border-white transition-all duration-300">Back-End Dev</div>
-                                 <div class="p-3 bg-lightBg dark:bg-darkBg border border-lightBorder dark:border-darkBorder rounded-xl text-center font-semibold text-xs tracking-wider uppercase hover:border-black dark:hover:border-white transition-all duration-300">System Architecture</div>
-                                 <div class="p-3 bg-lightBg dark:bg-darkBg border border-lightBorder dark:border-darkBorder rounded-xl text-center font-semibold text-xs tracking-wider uppercase hover:border-black dark:hover:border-white transition-all duration-300">REST API</div>
-                                 <div class="p-3 bg-lightBg dark:bg-darkBg border border-lightBorder dark:border-darkBorder rounded-xl text-center font-semibold text-xs tracking-wider uppercase hover:border-black dark:hover:border-white transition-all duration-300">Database Mgmt</div>
-                                 <div class="p-3 bg-lightBg dark:bg-darkBg border border-lightBorder dark:border-darkBorder rounded-xl text-center font-semibold text-xs tracking-wider uppercase hover:border-black dark:hover:border-white transition-all duration-300">GitHub Control</div>
-                                 <div class="p-3 bg-lightBg dark:bg-darkBg border border-lightBorder dark:border-darkBorder rounded-xl text-center font-semibold text-xs tracking-wider uppercase hover:border-black dark:hover:border-white transition-all duration-300">UI/UX Prototyping</div>
-                             </div>
-                         </div>
-
-                         <!-- Analytics & Requirements -->
-                         <div class="bg-lightCard dark:bg-darkCard border border-lightBorder dark:border-darkBorder p-6 md:p-8 rounded-2xl shadow-sm">
-                             <h3 class="text-xs font-bold uppercase tracking-widest text-gray-500 mb-6">Analytics & Requirements</h3>
-                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                                 <div class="p-3 bg-lightBg dark:bg-darkBg border border-lightBorder dark:border-darkBorder rounded-xl text-center font-semibold text-xs tracking-wider uppercase hover:border-black dark:hover:border-white transition-all duration-300">Business Analytics</div>
-                                 <div class="p-3 bg-lightBg dark:bg-darkBg border border-lightBorder dark:border-darkBorder rounded-xl text-center font-semibold text-xs tracking-wider uppercase hover:border-black dark:hover:border-white transition-all duration-300">Predictive Modeling</div>
-                                 <div class="p-3 bg-lightBg dark:bg-darkBg border border-lightBorder dark:border-darkBorder rounded-xl text-center font-semibold text-xs tracking-wider uppercase hover:border-black dark:hover:border-white transition-all duration-300">Data Visualization</div>
-                                 <div class="p-3 bg-lightBg dark:bg-darkBg border border-lightBorder dark:border-darkBorder rounded-xl text-center font-semibold text-xs tracking-wider uppercase hover:border-black dark:hover:border-white transition-all duration-300">Requirements Gathering</div>
-                                 <div class="p-3 bg-lightBg dark:bg-darkBg border border-lightBorder dark:border-darkBorder rounded-xl text-center font-semibold text-xs tracking-wider uppercase hover:border-black dark:hover:border-white transition-all duration-300 sm:col-span-2">Problem Solving</div>
-                             </div>
-                         </div>
-
-                         <!-- Technical & Interests -->
-                         <div class="bg-lightCard dark:bg-darkCard border border-lightBorder dark:border-darkBorder p-6 md:p-8 rounded-2xl shadow-sm">
-                             <h3 class="text-xs font-bold uppercase tracking-widest text-gray-500 mb-6">Technical & Interests</h3>
-                             <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
-                                 <div class="p-3 bg-lightBg dark:bg-darkBg border border-lightBorder dark:border-darkBorder rounded-xl text-center font-semibold text-xs tracking-wider uppercase hover:border-black dark:hover:border-white transition-all duration-300">Hardware Repair</div>
-                                 <div class="p-3 bg-lightBg dark:bg-darkBg border border-lightBorder dark:border-darkBorder rounded-xl text-center font-semibold text-xs tracking-wider uppercase hover:border-black dark:hover:border-white transition-all duration-300">Technology</div>
-                                 <div class="p-3 bg-lightBg dark:bg-darkBg border border-lightBorder dark:border-darkBorder rounded-xl text-center font-semibold text-xs tracking-wider uppercase hover:border-black dark:hover:border-white transition-all duration-300">Gaming</div>
-                                 <div class="p-3 bg-lightBg dark:bg-darkBg border border-lightBorder dark:border-darkBorder rounded-xl text-center font-semibold text-xs tracking-wider uppercase hover:border-black dark:hover:border-white transition-all duration-300">Music</div>
-                                 <div class="p-3 bg-lightBg dark:bg-darkBg border border-lightBorder dark:border-darkBorder rounded-xl text-center font-semibold text-xs tracking-wider uppercase hover:border-black dark:hover:border-white transition-all duration-300">Reading</div>
-                                 <div class="p-3 bg-lightBg dark:bg-darkBg border border-lightBorder dark:border-darkBorder rounded-xl text-center font-semibold text-xs tracking-wider uppercase hover:border-black dark:hover:border-white transition-all duration-300">Driving</div>
-                             </div>
-                         </div>
-                     </div>
-                 </section>
+                <section id="skills" class="fade-in mb-24 md:mb-32">
+                    <h2 class="text-2xl md:text-3xl font-bold mb-8 md:mb-10 tracking-tight flex items-center gap-4">
+                        <span class="w-8 h-1 bg-black dark:bg-white rounded-full"></span> Skills & Tech Stack
+                    </h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+                        <div class="bg-lightCard dark:bg-darkCard border border-lightBorder dark:border-darkBorder p-6 md:p-8 rounded-2xl shadow-sm">
+                            <h3 class="text-xs font-bold uppercase tracking-widest text-gray-500 mb-6">Technologies & Languages</h3>
+                            <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                                <div class="p-3 bg-lightBg dark:bg-darkBg border border-lightBorder dark:border-darkBorder rounded-xl text-center font-semibold text-xs tracking-wider uppercase hover:border-black dark:hover:border-white transition-all duration-200">HTML</div>
+                                <div class="p-3 bg-lightBg dark:bg-darkBg border border-lightBorder dark:border-darkBorder rounded-xl text-center font-semibold text-xs tracking-wider uppercase hover:border-black dark:hover:border-white transition-all duration-200">CSS</div>
+                                <div class="p-3 bg-lightBg dark:bg-darkBg border border-lightBorder dark:border-darkBorder rounded-xl text-center font-semibold text-xs tracking-wider uppercase hover:border-black dark:hover:border-white transition-all duration-200">JavaScript</div>
+                                <div class="p-3 bg-lightBg dark:bg-darkBg border border-lightBorder dark:border-darkBorder rounded-xl text-center font-semibold text-xs tracking-wider uppercase hover:border-black dark:hover:border-white transition-all duration-200">PHP</div>
+                                <div class="p-3 bg-lightBg dark:bg-darkBg border border-lightBorder dark:border-darkBorder rounded-xl text-center font-semibold text-xs tracking-wider uppercase hover:border-black dark:hover:border-white transition-all duration-200">React</div>
+                                <div class="p-3 bg-lightBg dark:bg-darkBg border border-lightBorder dark:border-darkBorder rounded-xl text-center font-semibold text-xs tracking-wider uppercase hover:border-black dark:hover:border-white transition-all duration-200">SQL</div>
+                                <div class="p-3 bg-lightBg dark:bg-darkBg border border-lightBorder dark:border-darkBorder rounded-xl text-center font-semibold text-xs tracking-wider uppercase hover:border-black dark:hover:border-white transition-all duration-200">Python</div>
+                                <div class="p-3 bg-lightBg dark:bg-darkBg border border-lightBorder dark:border-darkBorder rounded-xl text-center font-semibold text-xs tracking-wider uppercase hover:border-black dark:hover:border-white transition-all duration-200">Dart</div>
+                                <div class="p-3 bg-lightBg dark:bg-darkBg border border-lightBorder dark:border-darkBorder rounded-xl text-center font-semibold text-xs tracking-wider uppercase hover:border-black dark:hover:border-white transition-all duration-200">Flutter</div>
+                            </div>
+                        </div>
+                        <div class="bg-lightCard dark:bg-darkCard border border-lightBorder dark:border-darkBorder p-6 md:p-8 rounded-2xl shadow-sm">
+                            <h3 class="text-xs font-bold uppercase tracking-widest text-gray-500 mb-6">Development & Architecture</h3>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                <div class="p-3 bg-lightBg dark:bg-darkBg border border-lightBorder dark:border-darkBorder rounded-xl text-center font-semibold text-xs tracking-wider uppercase hover:border-black dark:hover:border-white transition-all duration-200">Back-End Dev</div>
+                                <div class="p-3 bg-lightBg dark:bg-darkBg border border-lightBorder dark:border-darkBorder rounded-xl text-center font-semibold text-xs tracking-wider uppercase hover:border-black dark:hover:border-white transition-all duration-200">System Architecture</div>
+                                <div class="p-3 bg-lightBg dark:bg-darkBg border border-lightBorder dark:border-darkBorder rounded-xl text-center font-semibold text-xs tracking-wider uppercase hover:border-black dark:hover:border-white transition-all duration-200">REST API</div>
+                                <div class="p-3 bg-lightBg dark:bg-darkBg border border-lightBorder dark:border-darkBorder rounded-xl text-center font-semibold text-xs tracking-wider uppercase hover:border-black dark:hover:border-white transition-all duration-200">Database Mgmt</div>
+                                <div class="p-3 bg-lightBg dark:bg-darkBg border border-lightBorder dark:border-darkBorder rounded-xl text-center font-semibold text-xs tracking-wider uppercase hover:border-black dark:hover:border-white transition-all duration-200">GitHub Control</div>
+                                <div class="p-3 bg-lightBg dark:bg-darkBg border border-lightBorder dark:border-darkBorder rounded-xl text-center font-semibold text-xs tracking-wider uppercase hover:border-black dark:hover:border-white transition-all duration-200">UI/UX Prototyping</div>
+                            </div>
+                        </div>
+                        <div class="bg-lightCard dark:bg-darkCard border border-lightBorder dark:border-darkBorder p-6 md:p-8 rounded-2xl shadow-sm">
+                            <h3 class="text-xs font-bold uppercase tracking-widest text-gray-500 mb-6">Analytics & Requirements</h3>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                <div class="p-3 bg-lightBg dark:bg-darkBg border border-lightBorder dark:border-darkBorder rounded-xl text-center font-semibold text-xs tracking-wider uppercase hover:border-black dark:hover:border-white transition-all duration-200">Business Analytics</div>
+                                <div class="p-3 bg-lightBg dark:bg-darkBg border border-lightBorder dark:border-darkBorder rounded-xl text-center font-semibold text-xs tracking-wider uppercase hover:border-black dark:hover:border-white transition-all duration-200">Predictive Modeling</div>
+                                <div class="p-3 bg-lightBg dark:bg-darkBg border border-lightBorder dark:border-darkBorder rounded-xl text-center font-semibold text-xs tracking-wider uppercase hover:border-black dark:hover:border-white transition-all duration-200">Data Visualization</div>
+                                <div class="p-3 bg-lightBg dark:bg-darkBg border border-lightBorder dark:border-darkBorder rounded-xl text-center font-semibold text-xs tracking-wider uppercase hover:border-black dark:hover:border-white transition-all duration-200">Requirements Gathering</div>
+                                <div class="p-3 bg-lightBg dark:bg-darkBg border border-lightBorder dark:border-darkBorder rounded-xl text-center font-semibold text-xs tracking-wider uppercase hover:border-black dark:hover:border-white transition-all duration-200 sm:col-span-2">Problem Solving</div>
+                            </div>
+                        </div>
+                        <div class="bg-lightCard dark:bg-darkCard border border-lightBorder dark:border-darkBorder p-6 md:p-8 rounded-2xl shadow-sm">
+                            <h3 class="text-xs font-bold uppercase tracking-widest text-gray-500 mb-6">Technical & Interests</h3>
+                            <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                                <div class="p-3 bg-lightBg dark:bg-darkBg border border-lightBorder dark:border-darkBorder rounded-xl text-center font-semibold text-xs tracking-wider uppercase hover:border-black dark:hover:border-white transition-all duration-200">Hardware Repair</div>
+                                <div class="p-3 bg-lightBg dark:bg-darkBg border border-lightBorder dark:border-darkBorder rounded-xl text-center font-semibold text-xs tracking-wider uppercase hover:border-black dark:hover:border-white transition-all duration-200">Technology</div>
+                                <div class="p-3 bg-lightBg dark:bg-darkBg border border-lightBorder dark:border-darkBorder rounded-xl text-center font-semibold text-xs tracking-wider uppercase hover:border-black dark:hover:border-white transition-all duration-200">Gaming</div>
+                                <div class="p-3 bg-lightBg dark:bg-darkBg border border-lightBorder dark:border-darkBorder rounded-xl text-center font-semibold text-xs tracking-wider uppercase hover:border-black dark:hover:border-white transition-all duration-200">Music</div>
+                                <div class="p-3 bg-lightBg dark:bg-darkBg border border-lightBorder dark:border-darkBorder rounded-xl text-center font-semibold text-xs tracking-wider uppercase hover:border-black dark:hover:border-white transition-all duration-200">Reading</div>
+                                <div class="p-3 bg-lightBg dark:bg-darkBg border border-lightBorder dark:border-darkBorder rounded-xl text-center font-semibold text-xs tracking-wider uppercase hover:border-black dark:hover:border-white transition-all duration-200">Driving</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
 
                 <!-- Projects Section -->
                 <section id="projects" class="fade-in mb-24 md:mb-32">
@@ -227,8 +213,7 @@
                         <span class="w-8 h-1 bg-black dark:bg-white rounded-full"></span> Projects
                     </h2>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <!-- BSU-Trace -->
-                        <div class="group bg-lightCard dark:bg-darkCard border border-lightBorder dark:border-darkBorder p-6 md:p-8 rounded-2xl hover:border-black dark:hover:border-white transition-all duration-300 flex flex-col">
+                        <div class="group bg-lightCard dark:bg-darkCard border border-lightBorder dark:border-darkBorder p-6 md:p-8 rounded-2xl hover:border-black dark:hover:border-white transition-all duration-200 flex flex-col">
                             <div class="flex justify-between items-start mb-4 gap-2">
                                 <h3 class="text-lg md:text-xl font-bold text-black dark:text-white">BSU-Trace</h3>
                                 <span class="text-[11px] font-bold px-2.5 py-1 bg-gray-100 dark:bg-darkBg border border-gray-200 dark:border-darkBorder rounded-full text-gray-600 dark:text-gray-300 whitespace-nowrap">Front & Back-end</span>
@@ -248,9 +233,7 @@
                                 <a href="https://github.com/denise-refuerzo/BSU-TRACE-PWA" target="_blank" rel="noopener noreferrer" class="text-sm font-bold text-gray-500 hover:text-black dark:hover:text-white transition-colors">Source Code &rarr;</a>
                             </div>
                         </div>
-
-                        <!-- BREADLY -->
-                        <div class="group bg-lightCard dark:bg-darkCard border border-lightBorder dark:border-darkBorder p-6 md:p-8 rounded-2xl hover:border-black dark:hover:border-white transition-all duration-300 flex flex-col">
+                        <div class="group bg-lightCard dark:bg-darkCard border border-lightBorder dark:border-darkBorder p-6 md:p-8 rounded-2xl hover:border-black dark:hover:border-white transition-all duration-200 flex flex-col">
                             <div class="flex justify-between items-start mb-4 gap-2">
                                 <h3 class="text-lg md:text-xl font-bold text-black dark:text-white">BREADLY</h3>
                                 <span class="text-[11px] font-bold px-2.5 py-1 bg-gray-100 dark:bg-darkBg border border-gray-200 dark:border-darkBorder rounded-full text-gray-600 dark:text-gray-300 whitespace-nowrap">Main Developer</span>
@@ -268,9 +251,7 @@
                                 <a href="https://github.com/camilegrace425/breadly" target="_blank" rel="noopener noreferrer" class="text-sm font-bold text-black dark:text-white hover:underline underline-offset-4">Source Code &rarr;</a>
                             </div>
                         </div>
-
-                        <!-- Healthcare -->
-                        <div class="group bg-lightCard dark:bg-darkCard border border-lightBorder dark:border-darkBorder p-6 md:p-8 rounded-2xl hover:border-black dark:hover:border-white transition-all duration-300 flex flex-col">
+                        <div class="group bg-lightCard dark:bg-darkCard border border-lightBorder dark:border-darkBorder p-6 md:p-8 rounded-2xl hover:border-black dark:hover:border-white transition-all duration-200 flex flex-col">
                             <div class="flex justify-between items-start mb-4 gap-2">
                                 <h3 class="text-lg md:text-xl font-bold text-black dark:text-white">Healthcare Data</h3>
                                 <span class="text-[11px] font-bold px-2.5 py-1 bg-gray-100 dark:bg-darkBg border border-gray-200 dark:border-darkBorder rounded-full text-gray-600 dark:text-gray-300 whitespace-nowrap">Backend</span>
@@ -288,9 +269,7 @@
                                 <a href="https://github.com/givano750/Healthcare-Data-Management-System-for-Remote-Community" target="_blank" rel="noopener noreferrer" class="text-sm font-bold text-black dark:text-white hover:underline underline-offset-4">Source Code &rarr;</a>
                             </div>
                         </div>
-
-                        <!-- CLAVEM -->
-                        <div class="group bg-lightCard dark:bg-darkCard border border-lightBorder dark:border-darkBorder p-6 md:p-8 rounded-2xl hover:border-black dark:hover:border-white transition-all duration-300 flex flex-col">
+                        <div class="group bg-lightCard dark:bg-darkCard border border-lightBorder dark:border-darkBorder p-6 md:p-8 rounded-2xl hover:border-black dark:hover:border-white transition-all duration-200 flex flex-col">
                             <div class="flex justify-between items-start mb-4 gap-2">
                                 <h3 class="text-lg md:text-xl font-bold text-black dark:text-white">CLAVEM</h3>
                                 <span class="text-[11px] font-bold px-2.5 py-1 bg-gray-100 dark:bg-darkBg border border-gray-200 dark:border-darkBorder rounded-full text-gray-600 dark:text-gray-300 whitespace-nowrap">Co-Developer</span>
@@ -315,8 +294,6 @@
                     <h2 class="text-2xl md:text-3xl font-bold mb-8 md:mb-10 tracking-tight flex items-center gap-4 w-full">
                         <span class="w-8 h-1 bg-black dark:bg-white rounded-full"></span> GitHub Activity
                     </h2>
-                    
-                    <!-- Loading Spinner -->
                     <div id="calendar-loader" class="flex flex-col items-center justify-center py-12 gap-4 w-full">
                         <svg class="animate-spin h-8 w-8 text-black dark:text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                             <circle class="opacity-20" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
@@ -324,12 +301,8 @@
                         </svg>
                         <span class="text-xs font-bold text-gray-500 uppercase tracking-widest">Syncing Commits</span>
                     </div>
-
-                    <!-- Pure Calendar Wrapper -->
                     <div class="w-full flex justify-center pb-2">
-                        <div class="calendar w-full opacity-0 transition-opacity duration-1000 ease-out">
-                            <!-- GitHub Calendar injects here -->
-                        </div>
+                        <div class="calendar w-full opacity-0 transition-opacity duration-700 ease-out"></div>
                     </div>
                 </section>
 
@@ -390,15 +363,15 @@
                         <span class="w-8 h-1 bg-black dark:bg-white rounded-full"></span> Let's Connect
                     </h2>
                     <p class="text-gray-600 dark:text-gray-400 mb-8 max-w-xl text-base md:text-lg">I'm currently open for new opportunities. Feel free to reach out!</p>
-                    
+                                         
                     <button type="button" id="show-form-btn" class="px-8 py-4 bg-black dark:bg-white text-white dark:text-black font-bold rounded-xl hover:-translate-y-1 hover:shadow-xl transition-all duration-300 w-full sm:w-auto cursor-pointer">Email Me</button>
-                    
+                                         
                     <form id="contact-form" class="hidden flex-col gap-4 max-w-xl mt-6 animate-[fadeIn_0.5s_ease-out]" action="https://formspree.io/f/xppprqkd" method="POST">
-                        <div class="flex flex-wrap gap-1">Name</div>
+                        <div class="flex flex-wrap gap-1 text-sm font-medium">Name</div>
                         <input type="text" name="name" placeholder="Your Name" required class="w-full px-5 py-4 bg-lightCard dark:bg-darkCard border border-lightBorder dark:border-darkBorder rounded-xl focus:outline-none focus:border-black dark:focus:border-white transition-colors text-black dark:text-white text-sm md:text-base">
-                        <div class="flex flex-wrap gap-1">Email</div>
+                        <div class="flex flex-wrap gap-1 text-sm font-medium">Email</div>
                         <input type="email" name="email" placeholder="Your Email" required class="w-full px-5 py-4 bg-lightCard dark:bg-darkCard border border-lightBorder dark:border-darkBorder rounded-xl focus:outline-none focus:border-black dark:focus:border-white transition-colors text-black dark:text-white text-sm md:text-base">
-                        <div class="flex flex-wrap gap-1">Message</div>
+                        <div class="flex flex-wrap gap-1 text-sm font-medium">Message</div>
                         <textarea name="message" placeholder="Your Message" rows="5" required class="w-full px-5 py-4 bg-lightCard dark:bg-darkCard border border-lightBorder dark:border-darkBorder rounded-xl focus:outline-none focus:border-black dark:focus:border-white transition-colors text-black dark:text-white resize-none text-sm md:text-base"></textarea>
                         <button type="submit" class="px-8 py-4 bg-black dark:bg-white text-white dark:text-black font-bold rounded-xl hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors w-full sm:w-auto self-start cursor-pointer">Send Message</button>
                         <p id="form-status" class="text-sm font-medium mt-2"></p>
@@ -407,23 +380,23 @@
                     <!-- Social Links -->
                     <div class="flex flex-wrap gap-3 mt-10">
                         <div class="text-sm font-bold text-gray-500 dark:text-gray-400 uppercase tracking-widest mb-2 w-full">Want to reach out directly?</div>
-                        <a href="https://github.com/givano750" target="_blank" aria-label="GitHub" class="flex items-center gap-2.5 px-4 py-3 rounded-xl border border-lightBorder dark:border-darkBorder bg-lightCard dark:bg-darkCard hover:border-black dark:hover:border-white text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition-all duration-300 text-sm font-medium">
+                        <a href="https://github.com/givano750" target="_blank" aria-label="GitHub" class="flex items-center gap-2.5 px-4 py-3 rounded-xl border border-lightBorder dark:border-darkBorder bg-lightCard dark:bg-darkCard hover:border-black dark:hover:border-white text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition-all duration-200 text-sm font-medium">
                             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
                             <span>givano750</span>
                         </a>
-                        <a href="https://ph.linkedin.com/in/gian-carlo-diaz-a56909292" target="_blank" aria-label="LinkedIn" class="flex items-center gap-2.5 px-4 py-3 rounded-xl border border-lightBorder dark:border-darkBorder bg-lightCard dark:bg-darkCard hover:border-black dark:hover:border-white text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition-all duration-300 text-sm font-medium">
+                        <a href="https://ph.linkedin.com/in/gian-carlo-diaz-a56909292" target="_blank" aria-label="LinkedIn" class="flex items-center gap-2.5 px-4 py-3 rounded-xl border border-lightBorder dark:border-darkBorder bg-lightCard dark:bg-darkCard hover:border-black dark:hover:border-white text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition-all duration-200 text-sm font-medium">
                             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a22 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
                             <span>Gian Carlo Diaz</span>
                         </a>
-                        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=giancarlondiaz@gmail.com" target="_blank" aria-label="Gmail" class="flex items-center gap-2.5 px-4 py-3 rounded-xl border border-lightBorder dark:border-darkBorder bg-lightCard dark:bg-darkCard hover:border-black dark:hover:border-white text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition-all duration-300 text-sm font-medium">
+                        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=giancarlondiaz@gmail.com" target="_blank" aria-label="Gmail" class="flex items-center gap-2.5 px-4 py-3 rounded-xl border border-lightBorder dark:border-darkBorder bg-lightCard dark:bg-darkCard hover:border-black dark:hover:border-white text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition-all duration-200 text-sm font-medium">
                             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
                             <span>giancarlondiaz@gmail.com</span>
                         </a>
-                        <a href="https://www.facebook.com/giand.299404" target="_blank" aria-label="Facebook" class="flex items-center gap-2.5 px-4 py-3 rounded-xl border border-lightBorder dark:border-darkBorder bg-lightCard dark:bg-darkCard hover:border-black dark:hover:border-white text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition-all duration-300 text-sm font-medium">
+                        <a href="https://www.facebook.com/giand.299404" target="_blank" aria-label="Facebook" class="flex items-center gap-2.5 px-4 py-3 rounded-xl border border-lightBorder dark:border-darkBorder bg-lightCard dark:bg-darkCard hover:border-black dark:hover:border-white text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition-all duration-200 text-sm font-medium">
                             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
                             <span>Gian Carlo Diaz</span>
                         </a>
-                        <a href="https://www.instagram.com/jiyaaanc" target="_blank" aria-label="Instagram" class="flex items-center gap-2.5 px-4 py-3 rounded-xl border border-lightBorder dark:border-darkBorder bg-lightCard dark:bg-darkCard hover:border-black dark:hover:border-white text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition-all duration-300 text-sm font-medium">
+                        <a href="https://www.instagram.com/jiyaaanc" target="_blank" aria-label="Instagram" class="flex items-center gap-2.5 px-4 py-3 rounded-xl border border-lightBorder dark:border-darkBorder bg-lightCard dark:bg-darkCard hover:border-black dark:hover:border-white text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition-all duration-200 text-sm font-medium">
                             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
                             <span>@jiyaaanc</span>
                         </a>
@@ -436,7 +409,6 @@
             </div>
         </main>
     </div>
-
     <script src="script.js"></script>
 </body>
 </html>

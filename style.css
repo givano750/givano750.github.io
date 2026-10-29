@@ -1,13 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
-/* Smooth transitions for theme switching */
 html, body {
     scroll-behavior: smooth;
-    transition: background-color 0.6s ease, color 0.6s ease;
+    transition: background-color 0.4s ease, color 0.4s ease;
 }
 
-div, header, main, section, nav, a, p, h1, h2, h3, span, button, input, textarea {
-    transition: background-color 0.4s ease, border-color 0.4s ease, color 0.4s ease, fill 0.4s ease, stroke 0.4s ease, box-shadow 0.4s ease;
+/* Optimized Performance: Target only specific interactive elements instead of all elements to prevent layout thrashing */
+a, button, input, textarea, .glass-panel, header, section {
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
 }
 
 /* Geometric Interactive Background Canvas */
@@ -18,8 +18,8 @@ div, header, main, section, nav, a, p, h1, h2, h3, span, button, input, textarea
     width: 100vw;
     height: 100vh;
     z-index: 0;
-    pointer-events: auto;
-    transition: opacity 0.6s ease;
+    pointer-events: none;
+    will-change: transform;
 }
 
 /* Minimalist Scrollbar */
@@ -38,21 +38,24 @@ div, header, main, section, nav, a, p, h1, h2, h3, span, button, input, textarea
     background: #333333;
 }
 
-/* Glassmorphism utility for sidebar */
+/* Circular Sweeping View Transition Performance Layer */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+::view-transition-new(root) {
+  z-index: 9999;
+}
+
+::view-transition-old(root) {
+  z-index: 1;
+}
+
 .glass-panel {
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-}
-
-/* Custom Badges (Skills) */
-.badge {
-    @apply px-3 py-1.5 rounded-md text-xs font-semibold uppercase tracking-wider transition-colors duration-300;
-}
-.badge-primary {
-    @apply bg-black text-white dark:bg-white dark:text-black border border-transparent;
-}
-.badge-secondary {
-    @apply bg-transparent text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-700;
 }
 
 /* Active Nav State */
@@ -75,7 +78,7 @@ div, header, main, section, nav, a, p, h1, h2, h3, span, button, input, textarea
 .fade-in {
     opacity: 0;
     transform: translateY(20px);
-    transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
     will-change: opacity, transform;
 }
 .fade-in.visible {
@@ -89,15 +92,9 @@ div, header, main, section, nav, a, p, h1, h2, h3, span, button, input, textarea
 }
 
 /* ==========================================
-   GitHub Calendar: Exact Desktop Replica (Scaled Down)
+   GitHub Calendar Custom Styling
    ========================================== */
-
-/* 1. Strip ALL Default GitHub Borders and Backgrounds */
-.calendar,
-.calendar .Box,
-.calendar .border,
-.calendar .js-calendar-graph,
-.calendar .color-border-default {
+.calendar, .calendar .Box, .calendar .border, .calendar .js-calendar-graph, .calendar .color-border-default {
     border: none !important;
     background: transparent !important;
     border-radius: 0 !important;
@@ -106,13 +103,7 @@ div, header, main, section, nav, a, p, h1, h2, h3, span, button, input, textarea
     outline: none !important;
 }
 
-/* 2. SAFELY Hide annoying GitHub text without breaking the grid */
-.calendar .sr-only,
-.calendar h2,
-.calendar caption,
-.calendar .contrib-column,
-.calendar .float-left,
-.calendar a[href*="contributions"] { 
+.calendar .sr-only, .calendar h2, .calendar caption, .calendar .contrib-column, .calendar .float-left, .calendar a[href*="contributions"] {
     display: none !important;
     opacity: 0 !important;
     visibility: hidden !important;
@@ -120,17 +111,15 @@ div, header, main, section, nav, a, p, h1, h2, h3, span, button, input, textarea
     z-index: -1 !important;
 }
 
-/* 3. Force Table Layout (The secret to preventing squishing) */
 .calendar table.ContributionCalendar-grid {
     display: table !important;
-    table-layout: fixed !important; 
+    table-layout: fixed !important;
     width: 100% !important;
     border-spacing: 0.4vw !important;
     border-collapse: separate !important;
     margin: 0 auto !important;
 }
 
-/* 4. Fluid Square Cells (vw units ensure perfect squares on mobile) */
 .calendar td.ContributionCalendar-day {
     width: 1.4vw !important;
     height: 1.4vw !important;
@@ -143,18 +132,20 @@ div, header, main, section, nav, a, p, h1, h2, h3, span, button, input, textarea
     cursor: pointer;
 }
 
-/* Hover effects */
-.calendar td.ContributionCalendar-day:hover { transform: translateY(-2px); filter: brightness(0.9); }
-.dark .calendar td.ContributionCalendar-day:hover { filter: brightness(1.2); }
+.calendar td.ContributionCalendar-day:hover {
+    transform: translateY(-2px);
+    filter: brightness(0.9);
+}
+.dark .calendar td.ContributionCalendar-day:hover {
+    filter: brightness(1.2);
+}
 
-/* 5. Mobile Font Scaling */
 .calendar .ContributionCalendar-label {
     font-size: 1.8vw !important;
     fill: currentColor !important;
     color: currentColor !important;
 }
 
-/* 6. Legend Styling (Less ... More) */
 .calendar .contrib-legend {
     display: flex !important;
     align-items: center !important;
@@ -164,7 +155,9 @@ div, header, main, section, nav, a, p, h1, h2, h3, span, button, input, textarea
     font-size: 2vw !important;
     color: #71717a !important;
 }
-.dark .calendar .contrib-legend { color: #8b949e !important; }
+.dark .calendar .contrib-legend {
+    color: #8b949e !important;
+}
 .calendar .contrib-legend .ContributionCalendar-day {
     width: 1.4vw !important;
     height: 1.4vw !important;
@@ -172,7 +165,6 @@ div, header, main, section, nav, a, p, h1, h2, h3, span, button, input, textarea
     display: inline-block !important;
 }
 
-/* 7. Desktop Override: Snap back to standard pixel sizes so it doesn't get huge */
 @media (min-width: 768px) {
     .calendar table.ContributionCalendar-grid {
         width: max-content !important;
@@ -190,7 +182,7 @@ div, header, main, section, nav, a, p, h1, h2, h3, span, button, input, textarea
     .calendar .contrib-legend .ContributionCalendar-day { width: 10px !important; height: 10px !important; }
 }
 
-/* 8. Dark/Light Mode Cell Colors */
+/* Dark/Light Mode Cell Colors */
 .calendar td.ContributionCalendar-day[data-level="0"] { fill: #ebedf0 !important; background-color: #ebedf0 !important; }
 .calendar td.ContributionCalendar-day[data-level="1"] { fill: #9be9a8 !important; background-color: #9be9a8 !important; }
 .calendar td.ContributionCalendar-day[data-level="2"] { fill: #40c463 !important; background-color: #40c463 !important; }
@@ -203,7 +195,7 @@ div, header, main, section, nav, a, p, h1, h2, h3, span, button, input, textarea
 .dark .calendar td.ContributionCalendar-day[data-level="3"] { fill: #26a641 !important; background-color: #26a641 !important; }
 .dark .calendar td.ContributionCalendar-day[data-level="4"] { fill: #39d353 !important; background-color: #39d353 !important; }
 
-/* 9. Modern Tooltip Styling */
+/* Modern Tooltip Styling */
 .github-calendar-tooltip {
     background-color: #111111 !important;
     color: #ffffff !important;
@@ -222,5 +214,3 @@ div, header, main, section, nav, a, p, h1, h2, h3, span, button, input, textarea
     color: #000000 !important;
     border-color: #eaeaea !important;
 }
-.github-calendar-tooltip::after { border-top-color: #111111 !important; }
-.dark .github-calendar-tooltip::after { border-top-color: #ffffff !important; }

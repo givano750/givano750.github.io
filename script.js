@@ -1,54 +1,45 @@
 document.addEventListener('DOMContentLoaded', () => {
     // ==========================================
-    // Matrix Square Theme Background Transition
+    // 1. Sweeping Circular View Transition Wipe
     // ==========================================
-    let matrixTransitionActive = false;
-    let matrixSquares = [];
-    let matrixTargetColor = '';
-    let matrixProgress = 0;
-
     function playMatrixTransition(targetTheme, callback) {
-        const canvas = document.getElementById('bg-canvas');
-        if (!canvas) {
+        if (!document.startViewTransition) {
             callback();
             return;
         }
-
-        matrixTargetColor = targetTheme === 'dark' ? '#050505' : '#fafafa';
-        const gridSize = 40;
-        const cols = Math.ceil(canvas.width / gridSize);
-        const rows = Math.ceil(canvas.height / gridSize);
-        
-        matrixSquares = [];
-        for (let r = 0; r < rows; r++) {
-            for (let c = 0; c < cols; c++) {
-                matrixSquares.push({ x: c * gridSize, y: r * gridSize });
-            }
+        const themeToggle = document.getElementById('theme-toggle');
+        let x = window.innerWidth - 80;
+        let y = 40;
+        if (themeToggle) {
+            const rect = themeToggle.getBoundingClientRect();
+            x = rect.left + rect.width / 2;
+            y = rect.top + rect.height / 2;
         }
+        const maxRadius = Math.hypot(
+            Math.max(x, window.innerWidth - x),
+            Math.max(y, window.innerHeight - y)
+        );
         
-        // Shuffle squares randomly for the matrix dissolve effect
-        matrixSquares.sort(() => Math.random() - 0.5);
-        
-        matrixProgress = 0;
-        matrixTransitionActive = true;
+        const transition = document.startViewTransition(() => {
+            callback();
+        });
 
-        // Trigger theme switch halfway through the wipe for a seamless handoff
-        const totalSteps = matrixSquares.length;
-        const interval = setInterval(() => {
-            matrixProgress += Math.max(1, Math.floor(totalSteps / 15));
-            
-            if (matrixProgress >= totalSteps / 2 && matrixTransitionActive) {
-                // Apply theme halfway so the background shifts underneath the trailing squares
-                callback();
-            }
-
-            if (matrixProgress >= totalSteps) {
-                clearInterval(interval);
-                setTimeout(() => {
-                    matrixTransitionActive = false;
-                }, 200);
-            }
-        }, 16);
+        transition.ready.then(() => {
+            const clipPath = [
+                `circle(0px at ${x}px ${y}px)`,
+                `circle(${maxRadius}px at ${x}px ${y}px)`
+            ];
+            document.documentElement.animate(
+                {
+                    clipPath: clipPath,
+                },
+                {
+                    duration: 450, // Accelerated for snappier feel
+                    easing: 'cubic-bezier(0.25, 1, 0.5, 1)',
+                    pseudoElement: '::view-transition-new(root)',
+                }
+            );
+        });
     }
 
     // ==========================================
@@ -59,30 +50,26 @@ document.addEventListener('DOMContentLoaded', () => {
     const savedTheme = localStorage.getItem('theme');
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     let currentTheme = 'dark';
-    
+
     if (savedTheme === 'light' || (!savedTheme && !prefersDark)) {
         currentTheme = 'light';
     }
 
     function applyTheme(theme) {
         const profileImg = document.getElementById('profile-img');
-                 
+
         if (theme === 'dark') {
             rootElement.classList.add('dark');
             if (themeToggle) themeToggle.checked = true;
-            if (profileImg) {
-                profileImg.src = 'assets/me.jpg';
-            }
+            if (profileImg) profileImg.src = 'assets/me.jpg';
         } else {
             rootElement.classList.remove('dark');
             if (themeToggle) themeToggle.checked = false;
-            if (profileImg) {
-                profileImg.src = 'assets/me-with-shades.jpg';
-            }
+            if (profileImg) profileImg.src = 'assets/me-with-shades.jpg';
         }
         localStorage.setItem('theme', theme);
         currentTheme = theme;
-                 
+
         if (window.updateCanvasTheme) {
             window.updateCanvasTheme(theme);
         }
@@ -93,10 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (themeToggle) {
         themeToggle.addEventListener('change', () => {
             const newTheme = themeToggle.checked ? 'dark' : 'light';
-            
-            // Disable toggle during animation to prevent overlapping triggers
             themeToggle.disabled = true;
-
             playMatrixTransition(newTheme, () => {
                 applyTheme(newTheme);
                 themeToggle.disabled = false;
@@ -116,8 +100,6 @@ document.addEventListener('DOMContentLoaded', () => {
             sidebar.classList.remove('-translate-x-full');
             sidebar.classList.add('translate-x-0');
             mobileMenuBtn.classList.add('menu-active');
-            mobileMenuBtn.classList.remove('left-4');
-            mobileMenuBtn.classList.add('left-[304px]');
             if (menuBackdrop) {
                 menuBackdrop.classList.remove('opacity-0', 'pointer-events-none');
                 menuBackdrop.classList.add('opacity-100');
@@ -126,8 +108,6 @@ document.addEventListener('DOMContentLoaded', () => {
             sidebar.classList.remove('translate-x-0');
             sidebar.classList.add('-translate-x-full');
             mobileMenuBtn.classList.remove('menu-active');
-            mobileMenuBtn.classList.remove('left-[304px]');
-            mobileMenuBtn.classList.add('left-4');
             if (menuBackdrop) {
                 menuBackdrop.classList.remove('opacity-100');
                 menuBackdrop.classList.add('opacity-0', 'pointer-events-none');
@@ -140,13 +120,12 @@ document.addEventListener('DOMContentLoaded', () => {
             const isOpen = sidebar.classList.contains('translate-x-0');
             toggleMobileMenu(!isOpen);
         });
-                 
+
         if (menuBackdrop) {
             menuBackdrop.addEventListener('click', () => toggleMobileMenu(false));
         }
 
-        const navLinksList = sidebar.querySelectorAll('.nav-link');
-        navLinksList.forEach(link => {
+        sidebar.querySelectorAll('.nav-link').forEach(link => {
             link.addEventListener('click', () => {
                 if (window.innerWidth < 1024) {
                     toggleMobileMenu(false);
@@ -160,31 +139,38 @@ document.addEventListener('DOMContentLoaded', () => {
     // ==========================================
     const sections = document.querySelectorAll('main section');
     const navLinks = document.querySelectorAll('.nav-link');
+
     const fadeObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
             }
         });
-    }, { threshold: 0.1, rootMargin: "0px 0px -30px 0px" });
+    }, { threshold: 0.08, rootMargin: "0px 0px -40px 0px" });
 
     sections.forEach(section => fadeObserver.observe(section));
 
+    // Debounced Scroll Spy for Performance
+    let scrollTimeout;
     window.addEventListener('scroll', () => {
-        let currentSection = '';
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop - 150;
-            if (window.scrollY >= sectionTop) {
-                currentSection = section.getAttribute('id');
-            }
-        });
-        navLinks.forEach(link => {
-            link.classList.remove('active');
-            if (link.getAttribute('href') === `#${currentSection}`) {
-                link.classList.add('active');
-            }
-        });
-    });
+        if (scrollTimeout) return;
+        scrollTimeout = setTimeout(() => {
+            scrollTimeout = null;
+            let currentSection = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 180;
+                if (window.scrollY >= sectionTop) {
+                    currentSection = section.getAttribute('id');
+                }
+            });
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${currentSection}`) {
+                    link.classList.add('active');
+                }
+            });
+        }, 50);
+    }, { passive: true });
 
     // ==========================================
     // 5. Contact Form Logic with Cooldown
@@ -206,7 +192,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const COOLDOWN_TIME = 60 * 60 * 1000;
             const lastSendTime = localStorage.getItem('last_submission_time');
             const now = Date.now();
-
+            
             if (lastSendTime && (now - lastSendTime < COOLDOWN_TIME)) {
                 const remainingMinutes = Math.ceil((COOLDOWN_TIME - (now - lastSendTime)) / (1000 * 60));
                 if (formStatus) {
@@ -242,7 +228,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     body: formData,
                     headers: { 'Accept': 'application/json' }
                 });
-
                 if (response.ok) {
                     localStorage.setItem('last_submission_time', Date.now());
                     if (formStatus) {
@@ -265,18 +250,18 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ==========================================
-    // 6. Interactive Geometric Background (Canvas)
+    // 6. Optimized Interactive Background Canvas
     // ==========================================
     const canvas = document.getElementById('bg-canvas');
     if (canvas) {
-        const ctx = canvas.getContext('2d');
+        const ctx = canvas.getContext('2d', { alpha: true });
         let particlesArray = [];
         let isDarkMode = rootElement.classList.contains('dark');
-
+        
         const config = {
-            particleCount: Math.min(window.innerWidth / 15, 80),
-            maxDistance: 130,
-            mouseRadius: 130,
+            particleCount: Math.min(window.innerWidth / 20, 50), // Optimized density for better FPS
+            maxDistance: 120,
+            mouseRadius: 110,
             baseColorLight: 'rgba(0, 0, 0, ',
             baseColorDark: 'rgba(255, 255, 255, '
         };
@@ -285,20 +270,18 @@ document.addEventListener('DOMContentLoaded', () => {
         window.addEventListener('mousemove', (event) => {
             mouse.x = event.clientX;
             mouse.y = event.clientY;
-        });
-        window.addEventListener('touchmove', (event) => {
-            if (event.touches.length > 0) {
-                mouse.x = event.touches[0].clientX;
-                mouse.y = event.touches[0].clientY;
-            }
         }, { passive: true });
 
         window.addEventListener('mouseout', () => { mouse.x = null; mouse.y = null; });
-        window.addEventListener('touchend', () => { mouse.x = null; mouse.y = null; });
+
+        let resizeTimeout;
         window.addEventListener('resize', () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-            initParticles();
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+                initParticles();
+            }, 150);
         });
 
         window.updateCanvasTheme = function(theme) {
@@ -309,34 +292,31 @@ document.addEventListener('DOMContentLoaded', () => {
             constructor() {
                 this.x = Math.random() * canvas.width;
                 this.y = Math.random() * canvas.height;
-                this.vx = (Math.random() - 0.5) * 0.8;
-                this.vy = (Math.random() - 0.5) * 0.8;
-                this.size = Math.random() * 2 + 1;
+                this.vx = (Math.random() - 0.5) * 0.5;
+                this.vy = (Math.random() - 0.5) * 0.5;
+                this.size = Math.random() * 1.5 + 1;
             }
             update() {
                 this.x += this.vx;
                 this.y += this.vy;
                 if (this.x < 0 || this.x > canvas.width) this.vx = -this.vx;
                 if (this.y < 0 || this.y > canvas.height) this.vy = -this.vy;
+
                 if (mouse.x != null && mouse.y != null) {
                     let dx = mouse.x - this.x;
                     let dy = mouse.y - this.y;
                     let distance = Math.sqrt(dx * dx + dy * dy);
-                                     
                     if (distance < config.mouseRadius) {
-                        const forceDirectionX = dx / distance;
-                        const forceDirectionY = dy / distance;
                         const force = (config.mouseRadius - distance) / config.mouseRadius;
-                                             
-                        this.x -= forceDirectionX * force * 2.5;
-                        this.y -= forceDirectionY * force * 2.5;
+                        this.x -= (dx / distance) * force * 1.5;
+                        this.y -= (dy / distance) * force * 1.5;
                     }
                 }
             }
             draw() {
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fillStyle = isDarkMode ? `${config.baseColorDark} 0.3)` : `${config.baseColorLight} 0.25)`;
+                ctx.fillStyle = isDarkMode ? `${config.baseColorDark}0.25)` : `${config.baseColorLight}0.2)`;
                 ctx.fill();
             }
         }
@@ -352,30 +332,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
         function animateParticles() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-            if (matrixTransitionActive && matrixSquares.length > 0) {
-                ctx.fillStyle = matrixTargetColor;
-                const gridSize = 40;
-                for (let i = 0; i < Math.min(matrixProgress, matrixSquares.length); i++) {
-                    const sq = matrixSquares[i];
-                    ctx.fillRect(sq.x, sq.y, gridSize, gridSize);
-                }
-            }
-                     
             for (let i = 0; i < particlesArray.length; i++) {
                 particlesArray[i].update();
                 particlesArray[i].draw();
-                             
+
                 for (let j = i; j < particlesArray.length; j++) {
                     let dx = particlesArray[i].x - particlesArray[j].x;
                     let dy = particlesArray[i].y - particlesArray[j].y;
                     let distance = Math.sqrt(dx * dx + dy * dy);
-                                     
+
                     if (distance < config.maxDistance) {
-                        let opacity = 1 - (distance / config.maxDistance);
+                        let opacity = (1 - (distance / config.maxDistance)) * 0.12;
                         ctx.beginPath();
-                        ctx.strokeStyle = isDarkMode ? `${config.baseColorDark} ${opacity * 0.15})` : `${config.baseColorLight} ${opacity * 0.15})`;
-                        ctx.lineWidth = 1;
+                        ctx.strokeStyle = isDarkMode ? `${config.baseColorDark}${opacity})` : `${config.baseColorLight}${opacity})`;
+                        ctx.lineWidth = 0.8;
                         ctx.moveTo(particlesArray[i].x, particlesArray[i].y);
                         ctx.lineTo(particlesArray[j].x, particlesArray[j].y);
                         ctx.stroke();
