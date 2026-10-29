@@ -1,400 +1,440 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <meta name="description" content="Portfolio of Gian Carlo Diaz - Information Technology Student specializing in Business Analytics and Back-End Development.">
     <meta name="author" content="Gian Carlo Diaz">
+    
     <!-- Open Graph / Social Media Preview -->
     <meta property="og:title" content="Gian Carlo Diaz - Portfolio">
     <meta property="og:description" content="IT Student & Backend Developer specializing in scalable web architecture, databases, and analytics.">
-    <meta property="og:image" content="Pictures/me.jpg">
+    <meta property="og:image" content="assets/me.jpg">
     <meta property="og:type" content="website">
     <title>Gian Carlo Diaz - Portfolio</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        darkBg: '#050505',
+                        darkCard: '#111111',
+                        darkBorder: '#222222',
+                        lightBg: '#fafafa',
+                        lightCard: '#ffffff',
+                        lightBorder: '#eaeaea'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Custom CSS -->
     <link rel="stylesheet" href="style.css">
+    
+    <!-- GitHub Calendar Assets -->
+    <link rel="stylesheet" href="https://unpkg.com/github-calendar@latest/dist/github-calendar-responsive.css" />
+    <script src="https://unpkg.com/github-calendar@latest/dist/github-calendar.min.js"></script>
 </head>
-<body>
-    <div class="layout-container">
+<body class="bg-lightBg text-gray-900 dark:bg-darkBg dark:text-gray-100 antialiased overflow-x-hidden">
+    
+    <!-- Geometric Interactive Background -->
+    <canvas id="bg-canvas"></canvas>
+
+    <div class="flex min-h-screen relative z-10 w-full">
+        
         <!-- Mobile Menu Toggle Button -->
-        <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Toggle Navigation Menu">
-            <span class="hamburger-line"></span>
-            <span class="hamburger-line"></span>
-            <span class="hamburger-line"></span>
+        <button id="mobile-menu-btn" class="lg:hidden fixed top-4 left-4 z-[100] p-3 bg-white/90 dark:bg-darkCard/95 backdrop-blur border border-lightBorder dark:border-darkBorder rounded-xl shadow-lg flex flex-col gap-[5px] w-[46px] h-[46px] justify-center items-center group cursor-pointer transition-all duration-500" aria-label="Toggle Navigation Menu">
+            <span class="w-6 h-[2px] bg-black dark:bg-white transition-all duration-300 transform origin-center"></span>
+            <span class="w-6 h-[2px] bg-black dark:bg-white transition-all duration-300 transform origin-center"></span>
+            <span class="w-6 h-[2px] bg-black dark:bg-white transition-all duration-300 transform origin-center"></span>
         </button>
+        <!-- Mobile Backdrop Overlay -->
+        <div id="menu-backdrop" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-40 opacity-0 pointer-events-none transition-opacity duration-300 lg:hidden"></div>
 
         <!-- Sidebar Navigation -->
-        <header class="sidebar" id="sidebar">
-            <div class="sidebar-top">
-                <div class="brand">
-                    <div class="logo">Gian Carlo Diaz</div>
-                    <p class="sidebar-subtitle">IT Student & Full-Stack Developer</p>
+        <header class="fixed top-0 left-0 h-screen w-72 glass-panel border-r border-lightBorder dark:border-darkBorder bg-white/90 dark:bg-darkBg/95 backdrop-blur-md flex flex-col justify-between p-6 md:p-8 transform -translate-x-full lg:translate-x-0 transition-transform duration-500 z-50 shadow-2xl lg:shadow-none" id="sidebar">
+            <div>
+                <div class="mb-8 md:mb-10">
+                    <h1 class="text-xl md:text-2xl font-bold tracking-tight text-black dark:text-white">Gian Carlo Diaz</h1>
+                    <p class="text-xs md:text-sm font-medium text-gray-500 dark:text-gray-400 mt-2 uppercase tracking-widest">Full-Stack Developer</p>
                 </div>
-                <nav class="nav-menu">
-                    <a href="#about" class="nav-link">About</a>
-                    <a href="#education" class="nav-link">Education</a>
-                    <a href="#skills" class="nav-link">Skills</a>
-                    <a href="#projects" class="nav-link">Projects</a>
-                    <a href="#seminars" class="nav-link">Seminars</a>
-                    <a href="#contact" class="nav-link">Contact</a>
+                <nav class="flex flex-col gap-1 md:gap-2">
+                    <a href="#about" class="nav-link text-sm font-medium px-4 py-3 rounded-lg text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-darkCard hover:text-black dark:hover:text-white transition-all duration-300">About</a>
+                    <a href="#education" class="nav-link text-sm font-medium px-4 py-3 rounded-lg text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-darkCard hover:text-black dark:hover:text-white transition-all duration-300">Education</a>
+                    <a href="#skills" class="nav-link text-sm font-medium px-4 py-3 rounded-lg text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-darkCard hover:text-black dark:hover:text-white transition-all duration-300">Skills</a>
+                    <a href="#projects" class="nav-link text-sm font-medium px-4 py-3 rounded-lg text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-darkCard hover:text-black dark:hover:text-white transition-all duration-300">Projects</a>
+                    <a href="#seminars" class="nav-link text-sm font-medium px-4 py-3 rounded-lg text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-darkCard hover:text-black dark:hover:text-white transition-all duration-300">Seminars</a>
+                    <a href="#contact" class="nav-link text-sm font-medium px-4 py-3 rounded-lg text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-darkCard hover:text-black dark:hover:text-white transition-all duration-300">Contact</a>
                 </nav>
             </div>
-            <div class="sidebar-bottom">
-                <div class="sidebar-divider"></div>
-                <button id="theme-toggle" aria-label="Toggle Dark Mode">
-                    <span class="theme-icon">🌙</span>
-                    <span>Toggle Theme</span>
-                </button>
+            <div class="w-full flex items-center justify-center py-2">
+                <label class="relative inline-block w-20 h-10 cursor-pointer" aria-label="Toggle Dark Mode">
+                    <input type="checkbox" id="theme-toggle" class="sr-only peer">
+                    <!-- Background Track -->
+                    <div class="w-full h-full bg-[#e4e4e7] dark:bg-[#18181b] rounded-full shadow-[inset_0_2px_4px_rgba(0,0,0,0.15)] dark:shadow-[inset_0_2px_4px_rgba(0,0,0,0.5)] transition-colors duration-300"></div>
+                    <!-- Sliding Circular Knob with Icon -->
+                    <div class="absolute left-1 top-1 w-10 h-8 rounded-full bg-gradient-to-b from-[#f59e0b] to-[#d97706] dark:from-[#27272a] dark:to-[#09090b] dark:border dark:border-zinc-700 shadow-md flex items-center justify-center transition-transform duration-300 transform peer-checked:translate-x-8">
+                        <!-- Sun Icon (Visible in Light Mode / Unchecked) -->
+                        <svg class="w-3.5 h-3.5 text-white absolute transition-opacity duration-300 dark:opacity-0" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32l1.41 1.41M2 12h2m16 0h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+                        <!-- Moon Icon (Visible in Dark Mode / Checked) -->
+                        <svg class="w-3.5 h-3.5 text-white absolute opacity-0 transition-opacity duration-300 dark:opacity-100" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                    </div>
+                </label>
             </div>
         </header>
 
         <!-- Main Content Area -->
-        <main class="content">
-            <!-- Hero / About Section -->
-            <section id="about" class="hero">
-                <div class="profile-pic">
-                    <img src="assets/me.jpg" alt="Profile Picture of Gian Carlo Diaz">
-                </div>
-                <div class="hero-content">
-                    <h1>Hi, I'm <span class="accent">Gian Carlo Diaz</span>.</h1>
-                    <p>I am an Information Technology student specializing in <strong>Business Analytics</strong> and <strong>Full-Stack Development</strong>. I focus on building scalable web application architectures, managing databases, and designing real-time interactive systems.</p>
-                    <div class="hero-cta">
-                        <a href="#contact" class="btn">Get in touch</a>
-                        <a href="assets/CV.pdf" target="_blank" class="btn btn-outline">Download CV</a>
+        <main class="w-full lg:pl-72 flex flex-col items-center">
+            <div class="w-full max-w-5xl px-5 py-16 md:px-12 md:py-28">
+                
+                <!-- Hero / About Section -->
+                <section id="about" class="fade-in flex flex-col-reverse lg:flex-row items-center justify-between gap-10 md:gap-12 mb-24 md:mb-32">
+                    <div class="flex-1 text-center lg:text-left w-full">
+                        <h1 class="text-3xl sm:text-4xl lg:text-6xl font-extrabold tracking-tight mb-6 leading-tight">
+                            Hi, I'm <span class="text-black dark:text-white border-b-4 border-gray-300 dark:border-gray-700">Gian Carlo</span>.
+                        </h1>
+                        <p class="text-base md:text-lg text-gray-600 dark:text-gray-400 mb-8 leading-relaxed max-w-2xl mx-auto lg:mx-0">
+                            I am an Information Technology student specializing in <strong class="text-black dark:text-white font-semibold">Business Analytics</strong> and <strong class="text-black dark:text-white font-semibold">Full-Stack Development</strong>. I focus on building scalable web application architectures, managing databases, and designing real-time interactive systems.
+                        </p>
+                        <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4">
+                            <a href="#contact" class="w-full sm:w-auto text-center px-8 py-3.5 bg-black dark:bg-white text-white dark:text-black font-semibold rounded-xl hover:bg-gray-800 dark:hover:bg-gray-200 transition-all duration-300 shadow-lg">Get in touch</a>
+                            <a href="assets/CV.pdf" target="_blank" class="w-full sm:w-auto text-center px-8 py-3.5 bg-transparent border border-black dark:border-white text-black dark:text-white font-semibold rounded-xl hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all duration-300">Download CV</a>
+                        </div>
                     </div>
-                </div>
-            </section>
+                    <div class="relative group">
+                        <div class="absolute -inset-1 bg-gradient-to-r from-gray-200 to-gray-400 dark:from-gray-800 dark:to-gray-600 rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
+                        <div class="relative w-40 h-40 sm:w-48 sm:h-48 lg:w-64 lg:h-64 rounded-2xl overflow-hidden border-2 border-white dark:border-darkBorder shadow-2xl">
+                            <img id="profile-img" src="assets/me-with-shades.jpg" alt="Gian Carlo Diaz" class="w-full h-full object-cover transition-all duration-500">
+                        </div>
+                    </div>
+                </section>
 
-            <!-- Education Timeline -->
-            <section id="education">
-                <h2>Education</h2>
-                <div class="timeline-list">
-                    <!-- College -->
-                    <div class="timeline-item">
-                        <div class="timeline-header">
-                            <span class="timeline-date">2023 – Present</span>
-                            <span class="status-badge">Current</span>
+                <!-- Education Timeline -->
+                <section id="education" class="fade-in mb-24 md:mb-32">
+                    <h2 class="text-2xl md:text-3xl font-bold mb-8 md:mb-10 tracking-tight flex items-center gap-4">
+                        <span class="w-8 h-1 bg-black dark:bg-white rounded-full"></span> Education
+                    </h2>
+                    <div class="relative border-l border-gray-300 dark:border-darkBorder ml-4 space-y-10 md:space-y-12">
+                        <!-- College -->
+                        <div class="relative pl-6 md:pl-8">
+                            <div class="absolute -left-1.5 top-1.5 w-3 h-3 rounded-full bg-black dark:bg-white ring-4 ring-lightBg dark:ring-darkBg"></div>
+                            <div class="flex flex-wrap items-center gap-3 mb-2">
+                                <span class="text-sm font-bold text-gray-500 dark:text-gray-400">2023 — Present</span>
+                                <span class="text-xs font-bold px-3 py-1 bg-gray-200 dark:bg-darkCard text-black dark:text-white rounded-full uppercase tracking-wider">Current</span>
+                            </div>
+                            <h3 class="text-lg md:text-xl font-bold text-black dark:text-white">Batangas State University - Lipa Campus</h3>
+                            <p class="text-sm md:text-base font-medium text-gray-700 dark:text-gray-300 mt-1">Bachelor of Science in Information Technology</p>
+                            <p class="text-xs md:text-sm text-gray-500 mt-1">Business Analytics Track • Marawoy, Lipa City</p>
                         </div>
-                        <div class="timeline-body">
-                            <h3>Batangas State University - Lipa Campus</h3>
-                            <p class="degree">Bachelor of Science in Information Technology</p>
-                            <p class="track">Business Analytics Track</p>
-                            <p class="location">Marawoy, Lipa City</p>
+                        <!-- High School -->
+                        <div class="relative pl-6 md:pl-8">
+                            <div class="absolute -left-1.5 top-1.5 w-3 h-3 rounded-full bg-gray-400 dark:bg-gray-600 ring-4 ring-lightBg dark:ring-darkBg"></div>
+                            <div class="flex flex-wrap items-center gap-3 mb-2">
+                                <span class="text-sm font-bold text-gray-500 dark:text-gray-400">2017 — 2023</span>
+                            </div>
+                            <h3 class="text-lg md:text-xl font-bold text-black dark:text-white">The Mabini Academy</h3>
+                            <p class="text-sm md:text-base font-medium text-gray-700 dark:text-gray-300 mt-1">High School / Senior High School</p>
+                            <p class="text-xs md:text-sm text-gray-500 mt-1">STEM Strand • Balintawak, Lipa City</p>
                         </div>
-                    </div>
-                    <!-- High School -->
-                    <div class="timeline-item">
-                        <div class="timeline-header">
-                            <span class="timeline-date">2017 – 2023</span>
-                        </div>
-                        <div class="timeline-body">
-                            <h3>The Mabini Academy</h3>
-                            <p class="degree">High School / Senior High School</p>
-                            <p class="track">Science, Technology, Engineering, and Mathematics (STEM)</p>
-                            <p class="location">Balintawak, Lipa City</p>
-                        </div>
-                    </div>
-                    <!-- Elementary -->
-                    <div class="timeline-item">
-                        <div class="timeline-header">
-                            <span class="timeline-date">2011 – 2017</span>
-                        </div>
-                        <div class="timeline-body">
-                            <h3>Gaudencio B. Lontok Memorial School</h3>
-                            <p class="degree">Elementary Education</p>
-                            <p class="location">Sabang, Lipa City</p>
+                        <!-- Elementary -->
+                        <div class="relative pl-6 md:pl-8">
+                            <div class="absolute -left-1.5 top-1.5 w-3 h-3 rounded-full bg-gray-400 dark:bg-gray-600 ring-4 ring-lightBg dark:ring-darkBg"></div>
+                            <div class="flex flex-wrap items-center gap-3 mb-2">
+                                <span class="text-sm font-bold text-gray-500 dark:text-gray-400">2011 — 2017</span>
+                            </div>
+                            <h3 class="text-lg md:text-xl font-bold text-black dark:text-white">Gaudencio B. Lontok Memorial School</h3>
+                            <p class="text-sm md:text-base font-medium text-gray-700 dark:text-gray-300 mt-1">Elementary Education</p>
+                            <p class="text-xs md:text-sm text-gray-500 mt-1">Sabang, Lipa City</p>
                         </div>
                     </div>
-                </div>
-            </section>
+                </section>
 
-            <!-- Skills & Tech Stack Section -->
-            <section id="skills">
-                <h2>Skills & Tech Stack</h2>
-                <div class="skills-group">
-                    <h3>Technologies & Languages</h3>
-                    <div class="skills-badges tech-stack-badges">
-                        <span>HTML</span>
-                        <span>CSS</span>
-                        <span>JavaScript</span>
-                        <span>PHP</span>
-                        <span>React</span>
-                        <span>SQL</span>
-                        <span>Python</span>
-                        <span>Dart</span>
-                        <span>Flutter</span>
-                    </div>
-                </div>
-                <div class="skills-group">
-                    <h3>Development & Architecture</h3>
-                    <div class="skills-badges">
-                        <span>Back-End Development</span>
-                        <span>System Architecture Design</span>
-                        <span>REST API Development</span>
-                        <span>Database Management</span>
-                        <span>GitHub Version Control</span>
-                        <span>UI/UX Prototyping</span>
-                    </div>
-                </div>
-                <div class="skills-group">
-                    <h3>Analytics & Requirements</h3>
-                    <div class="skills-badges">
-                        <span>Business Analytics</span>
-                        <span>Predictive Modeling</span>
-                        <span>Data Visualization & Reporting</span>
-                        <span>Requirements Gathering</span>
-                        <span>Problem Solving</span>
-                    </div>
-                </div>
-                <div class="skills-group">
-                    <h3>Technical & Interests</h3>
-                    <div class="skills-badges">
-                        <span>Hardware Repair (Phones & Laptops)</span>
-                        <span>Technology</span>
-                        <span>Gaming</span>
-                        <span>Music</span>
-                        <span>Reading</span>
-                        <span>Driving</span>
-                    </div>
-                </div>
-            </section>
+                <!-- Skills & Tech Stack Section -->
+                 <section id="skills" class="fade-in mb-24 md:mb-32">
+                     <h2 class="text-2xl md:text-3xl font-bold mb-8 md:mb-10 tracking-tight flex items-center gap-4">
+                         <span class="w-8 h-1 bg-black dark:bg-white rounded-full"></span> Skills & Tech Stack
+                     </h2>
+                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+                         <!-- Technologies & Languages -->
+                         <div class="bg-lightCard dark:bg-darkCard border border-lightBorder dark:border-darkBorder p-6 md:p-8 rounded-2xl shadow-sm">
+                             <h3 class="text-xs font-bold uppercase tracking-widest text-gray-500 mb-6">Technologies & Languages</h3>
+                             <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                                 <div class="p-3 bg-lightBg dark:bg-darkBg border border-lightBorder dark:border-darkBorder rounded-xl text-center font-semibold text-xs tracking-wider uppercase hover:border-black dark:hover:border-white transition-all duration-300">HTML</div>
+                                 <div class="p-3 bg-lightBg dark:bg-darkBg border border-lightBorder dark:border-darkBorder rounded-xl text-center font-semibold text-xs tracking-wider uppercase hover:border-black dark:hover:border-white transition-all duration-300">CSS</div>
+                                 <div class="p-3 bg-lightBg dark:bg-darkBg border border-lightBorder dark:border-darkBorder rounded-xl text-center font-semibold text-xs tracking-wider uppercase hover:border-black dark:hover:border-white transition-all duration-300">JavaScript</div>
+                                 <div class="p-3 bg-lightBg dark:bg-darkBg border border-lightBorder dark:border-darkBorder rounded-xl text-center font-semibold text-xs tracking-wider uppercase hover:border-black dark:hover:border-white transition-all duration-300">PHP</div>
+                                 <div class="p-3 bg-lightBg dark:bg-darkBg border border-lightBorder dark:border-darkBorder rounded-xl text-center font-semibold text-xs tracking-wider uppercase hover:border-black dark:hover:border-white transition-all duration-300">React</div>
+                                 <div class="p-3 bg-lightBg dark:bg-darkBg border border-lightBorder dark:border-darkBorder rounded-xl text-center font-semibold text-xs tracking-wider uppercase hover:border-black dark:hover:border-white transition-all duration-300">SQL</div>
+                                 <div class="p-3 bg-lightBg dark:bg-darkBg border border-lightBorder dark:border-darkBorder rounded-xl text-center font-semibold text-xs tracking-wider uppercase hover:border-black dark:hover:border-white transition-all duration-300">Python</div>
+                                 <div class="p-3 bg-lightBg dark:bg-darkBg border border-lightBorder dark:border-darkBorder rounded-xl text-center font-semibold text-xs tracking-wider uppercase hover:border-black dark:hover:border-white transition-all duration-300">Dart</div>
+                                 <div class="p-3 bg-lightBg dark:bg-darkBg border border-lightBorder dark:border-darkBorder rounded-xl text-center font-semibold text-xs tracking-wider uppercase hover:border-black dark:hover:border-white transition-all duration-300">Flutter</div>
+                             </div>
+                         </div>
 
-            <!-- Projects Section -->
-            <section id="projects">
-                <h2>Projects</h2>
-                <div class="project-grid">
-                    <!-- BSU-Trace -->
-                    <div class="project-card">
-                        <div class="project-header">
-                            <h3>BSU-Trace</h3>
-                            <span class="role-badge">Front-end & Back-end Developer</span>
-                        </div>
-                        <div class="project-date">December 2026</div>
-                        <div class="tech-stack">
-                            <span>React</span>
-                            <span>Python</span>
-                            <span>WebSockets</span>
-                            <span>Vercel</span>
-                            <span>Render</span>
-                            <span>Neon</span>
-                        </div>
-                        <p>Progressive Web App featuring WebSocket architecture for low-latency, real-time sync between the core platform and a companion mobile scanner, with refactored backend architecture for high maintainability and security.</p>
-                        <div class="project-links">
-                            <a href="https://bsu-trace-pwa.vercel.app" target="_blank" rel="noopener noreferrer" class="project-link">Live Demo &rarr;</a>
-                            <a href="https://github.com/denise-refuerzo/BSU-TRACE-PWA" target="_blank" rel="noopener noreferrer" class="project-link secondary">Source Code &rarr;</a>
-                        </div>
-                    </div>
-                    <!-- BREADLY -->
-                    <div class="project-card">
-                        <div class="project-header">
-                            <h3>BREADLY</h3>
-                            <span class="role-badge">Main Developer</span>
-                        </div>
-                        <div class="project-date">December 2025</div>
-                        <div class="tech-stack">
-                            <span>PHP</span>
-                            <span>JavaScript</span>
-                            <span>Tailwind CSS</span>
-                            <span>HTML</span>
-                        </div>
-                        <p>End-to-end POS and Inventory Management System featuring real-time product tracking, stock management workflows, and automated transaction processing deployed on Hostinger.</p>
-                        <div class="project-links">
-                            <a href="https://github.com/camilegrace425/breadly" target="_blank" rel="noopener noreferrer" class="project-link">Source Code &rarr;</a>
-                        </div>
-                    </div>
-                    <!-- Healthcare Data Management System -->
-                    <div class="project-card">
-                        <div class="project-header">
-                            <h3>Healthcare Data Management</h3>
-                            <span class="role-badge">Backend Developer</span>
-                        </div>
-                        <div class="project-date">May 2025</div>
-                        <div class="tech-stack">
-                            <span>PHP</span>
-                            <span>PostgreSQL</span>
-                            <span>JavaScript</span>
-                            <span>HTML</span>
-                            <span>CSS</span>
-                        </div>
-                        <p>Web-based platform built for remote communities to securely manage patient records, medical personnel information, and decision-support analytics dashboards.</p>
-                        <div class="project-links">
-                            <a href="https://github.com/givano750/Healthcare-Data-Management-System-for-Remote-Community" target="_blank" rel="noopener noreferrer" class="project-link">Source Code &rarr;</a>
-                        </div>
-                    </div>
-                    <!-- CLAVEM -->
-                    <div class="project-card">
-                        <div class="project-header">
-                            <h3>CLAVEM</h3>
-                            <span class="role-badge">Co-Developer</span>
-                        </div>
-                        <div class="project-date">December 2024</div>
-                        <div class="tech-stack">
-                            <span>PHP</span>
-                            <span>PostgreSQL</span>
-                            <span>HTML</span>
-                            <span>CSS</span>
-                        </div>
-                        <p>Comprehensive real-estate management platform facilitating digital property browsing, automated client inquiry tracking, and scheduling for site visits and ocular inspections.</p>
-                        <div class="project-links">
-                            <a href="https://github.com/givano750/Real-Estate-Platform-Using-PHP-for-Property-Listings-and-Management" target="_blank" rel="noopener noreferrer" class="project-link">Source Code &rarr;</a>
-                        </div>
-                    </div>
-                </div>
-            </section>
+                         <!-- Development & Architecture -->
+                         <div class="bg-lightCard dark:bg-darkCard border border-lightBorder dark:border-darkBorder p-6 md:p-8 rounded-2xl shadow-sm">
+                             <h3 class="text-xs font-bold uppercase tracking-widest text-gray-500 mb-6">Development & Architecture</h3>
+                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                 <div class="p-3 bg-lightBg dark:bg-darkBg border border-lightBorder dark:border-darkBorder rounded-xl text-center font-semibold text-xs tracking-wider uppercase hover:border-black dark:hover:border-white transition-all duration-300">Back-End Dev</div>
+                                 <div class="p-3 bg-lightBg dark:bg-darkBg border border-lightBorder dark:border-darkBorder rounded-xl text-center font-semibold text-xs tracking-wider uppercase hover:border-black dark:hover:border-white transition-all duration-300">System Architecture</div>
+                                 <div class="p-3 bg-lightBg dark:bg-darkBg border border-lightBorder dark:border-darkBorder rounded-xl text-center font-semibold text-xs tracking-wider uppercase hover:border-black dark:hover:border-white transition-all duration-300">REST API</div>
+                                 <div class="p-3 bg-lightBg dark:bg-darkBg border border-lightBorder dark:border-darkBorder rounded-xl text-center font-semibold text-xs tracking-wider uppercase hover:border-black dark:hover:border-white transition-all duration-300">Database Mgmt</div>
+                                 <div class="p-3 bg-lightBg dark:bg-darkBg border border-lightBorder dark:border-darkBorder rounded-xl text-center font-semibold text-xs tracking-wider uppercase hover:border-black dark:hover:border-white transition-all duration-300">GitHub Control</div>
+                                 <div class="p-3 bg-lightBg dark:bg-darkBg border border-lightBorder dark:border-darkBorder rounded-xl text-center font-semibold text-xs tracking-wider uppercase hover:border-black dark:hover:border-white transition-all duration-300">UI/UX Prototyping</div>
+                             </div>
+                         </div>
 
-            <!-- GitHub Activity Section -->
-            <section id="github-activity" class="github-section">
-                <h2>GitHub Activity</h2>
-                <link rel="stylesheet" href="https://unpkg.com/github-calendar@latest/dist/github-calendar-responsive.css" />
-                <script src="https://unpkg.com/github-calendar@latest/dist/github-calendar.min.js"></script>
-                <div class="github-calendar-box">
-                    <div class="calendar">
-                        Loading GitHub contributions...
-                    </div>
-                </div>
-                <script>
-                    GitHubCalendar(".calendar", "givano750", { 
-                        responsive: true,
-                        summary_text: ' '
-                    });
-                </script>
-            </section>
+                         <!-- Analytics & Requirements -->
+                         <div class="bg-lightCard dark:bg-darkCard border border-lightBorder dark:border-darkBorder p-6 md:p-8 rounded-2xl shadow-sm">
+                             <h3 class="text-xs font-bold uppercase tracking-widest text-gray-500 mb-6">Analytics & Requirements</h3>
+                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                 <div class="p-3 bg-lightBg dark:bg-darkBg border border-lightBorder dark:border-darkBorder rounded-xl text-center font-semibold text-xs tracking-wider uppercase hover:border-black dark:hover:border-white transition-all duration-300">Business Analytics</div>
+                                 <div class="p-3 bg-lightBg dark:bg-darkBg border border-lightBorder dark:border-darkBorder rounded-xl text-center font-semibold text-xs tracking-wider uppercase hover:border-black dark:hover:border-white transition-all duration-300">Predictive Modeling</div>
+                                 <div class="p-3 bg-lightBg dark:bg-darkBg border border-lightBorder dark:border-darkBorder rounded-xl text-center font-semibold text-xs tracking-wider uppercase hover:border-black dark:hover:border-white transition-all duration-300">Data Visualization</div>
+                                 <div class="p-3 bg-lightBg dark:bg-darkBg border border-lightBorder dark:border-darkBorder rounded-xl text-center font-semibold text-xs tracking-wider uppercase hover:border-black dark:hover:border-white transition-all duration-300">Requirements Gathering</div>
+                                 <div class="p-3 bg-lightBg dark:bg-darkBg border border-lightBorder dark:border-darkBorder rounded-xl text-center font-semibold text-xs tracking-wider uppercase hover:border-black dark:hover:border-white transition-all duration-300 sm:col-span-2">Problem Solving</div>
+                             </div>
+                         </div>
 
-        <!-- Seminars Section -->
-            <section id="seminars">
-                <h2>Seminars & Conferences</h2>
-                <div class="timeline-list">
-                    <div class="timeline-item">
-                        <div class="timeline-header">
-                            <span class="timeline-date">October 2026</span>
-                        </div>
-                        <div class="timeline-body">
-                            <h3>ConvergeIT 2026</h3>
-                            <p class="track">Converging Technologies for a Responsible, Secure, and Sustainable Digital Future</p>
-                            <p class="location">Batangas Information Technology Society</p>
-                        </div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-header">
-                            <span class="timeline-date">October 2026</span>
-                        </div>
-                        <div class="timeline-body">
-                            <h3>BITS2026</h3>
-                            <p class="track">AI and Blockchain for Smart Cities, Smart Business, and Smart Governance</p>
-                            <p class="location">Batangas Information Technology Society</p>
-                        </div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-header">
-                            <span class="timeline-date">October 2025</span>
-                        </div>
-                        <div class="timeline-body">
-                            <h3>DATABIZ 2025</h3>
-                            <p class="track">Future-Proof Skills: Empowering Students with Data, AI, and Analytics</p>
-                            <p class="location">Batangas Information Technology Society</p>
-                        </div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-header">
-                            <span class="timeline-date">April 2025</span>
-                        </div>
-                        <div class="timeline-body">
-                            <h3>BITCON 2025</h3>
-                            <p class="track">Building a Connected Tomorrow: IoT Innovations and Beyond</p>
-                            <p class="location">Batangas Information Technology Society</p>
-                        </div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-header">
-                            <span class="timeline-date">April 2024</span>
-                        </div>
-                        <div class="timeline-body">
-                            <h3>DATABIZ 2024</h3>
-                            <p class="track">Equipping Tomorrow's Innovations with Data Science, AI, and Business Analytics</p>
-                            <p class="location">Batangas Information Technology Society</p>
-                        </div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-header">
-                            <span class="timeline-date">November 2024</span>
-                        </div>
-                        <div class="timeline-body">
-                            <h3>BITCON 2024</h3>
-                            <p class="track">Navigating the Future of Technology: Integration, Innovation, and Security</p>
-                            <p class="location">Batangas Information Technology Society</p>
-                        </div>
-                    </div>
-                    <!-- FlexPHD Webinar Series -->
-                    <div class="timeline-item">
-                        <div class="timeline-header">
-                            <span class="timeline-date">February 2023</span>
-                        </div>
-                        <div class="timeline-body">
-                            <h3>FlexPHD: Food is Life EXemplified</h3>
-                            <p class="track">Using Digital Technology for Making Data- and Values-Driven Food Choices</p>
-                            <p class="location">SEAMEO SEARCA & NAST PHL</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
+                         <!-- Technical & Interests -->
+                         <div class="bg-lightCard dark:bg-darkCard border border-lightBorder dark:border-darkBorder p-6 md:p-8 rounded-2xl shadow-sm">
+                             <h3 class="text-xs font-bold uppercase tracking-widest text-gray-500 mb-6">Technical & Interests</h3>
+                             <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                                 <div class="p-3 bg-lightBg dark:bg-darkBg border border-lightBorder dark:border-darkBorder rounded-xl text-center font-semibold text-xs tracking-wider uppercase hover:border-black dark:hover:border-white transition-all duration-300">Hardware Repair</div>
+                                 <div class="p-3 bg-lightBg dark:bg-darkBg border border-lightBorder dark:border-darkBorder rounded-xl text-center font-semibold text-xs tracking-wider uppercase hover:border-black dark:hover:border-white transition-all duration-300">Technology</div>
+                                 <div class="p-3 bg-lightBg dark:bg-darkBg border border-lightBorder dark:border-darkBorder rounded-xl text-center font-semibold text-xs tracking-wider uppercase hover:border-black dark:hover:border-white transition-all duration-300">Gaming</div>
+                                 <div class="p-3 bg-lightBg dark:bg-darkBg border border-lightBorder dark:border-darkBorder rounded-xl text-center font-semibold text-xs tracking-wider uppercase hover:border-black dark:hover:border-white transition-all duration-300">Music</div>
+                                 <div class="p-3 bg-lightBg dark:bg-darkBg border border-lightBorder dark:border-darkBorder rounded-xl text-center font-semibold text-xs tracking-wider uppercase hover:border-black dark:hover:border-white transition-all duration-300">Reading</div>
+                                 <div class="p-3 bg-lightBg dark:bg-darkBg border border-lightBorder dark:border-darkBorder rounded-xl text-center font-semibold text-xs tracking-wider uppercase hover:border-black dark:hover:border-white transition-all duration-300">Driving</div>
+                             </div>
+                         </div>
+                     </div>
+                 </section>
 
-            <!-- Contact Section -->
-            <section id="contact">
-                <h2>Let's Connect</h2>
-                <p>I'm currently open for new opportunities. Feel free to reach out!</p>
-                <button type="button" id="show-form-btn" class="btn">Email Me</button>
-                <form id="contact-form" class="hidden" action="https://formspree.io/f/xppprqkd" method="POST">
-                    <input type="text" name="name" placeholder="Your Name" required>
-                    <input type="email" name="email" placeholder="Your Email" required>
-                    <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
-                    <button type="submit" class="btn">Send Message</button>
-                    <p id="form-status"></p>
-                </form>
+                <!-- Projects Section -->
+                <section id="projects" class="fade-in mb-24 md:mb-32">
+                    <h2 class="text-2xl md:text-3xl font-bold mb-8 md:mb-10 tracking-tight flex items-center gap-4">
+                        <span class="w-8 h-1 bg-black dark:bg-white rounded-full"></span> Projects
+                    </h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- BSU-Trace -->
+                        <div class="group bg-lightCard dark:bg-darkCard border border-lightBorder dark:border-darkBorder p-6 md:p-8 rounded-2xl hover:border-black dark:hover:border-white transition-all duration-300 flex flex-col">
+                            <div class="flex justify-between items-start mb-4 gap-2">
+                                <h3 class="text-lg md:text-xl font-bold text-black dark:text-white">BSU-Trace</h3>
+                                <span class="text-[11px] font-bold px-2.5 py-1 bg-gray-100 dark:bg-darkBg border border-gray-200 dark:border-darkBorder rounded-full text-gray-600 dark:text-gray-300 whitespace-nowrap">Front & Back-end</span>
+                            </div>
+                            <div class="text-xs md:text-sm font-medium text-gray-500 mb-4">December 2026</div>
+                            <div class="flex flex-wrap gap-2 mb-6">
+                                <span class="text-xs font-semibold px-2.5 py-1 bg-gray-100 dark:bg-black rounded text-black dark:text-white">React</span>
+                                <span class="text-xs font-semibold px-2.5 py-1 bg-gray-100 dark:bg-black rounded text-black dark:text-white">Python</span>
+                                <span class="text-xs font-semibold px-2.5 py-1 bg-gray-100 dark:bg-black rounded text-black dark:text-white">WebSockets</span>
+                                <span class="text-xs font-semibold px-2.5 py-1 bg-gray-100 dark:bg-black rounded text-black dark:text-white">Neon</span>
+                            </div>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed flex-grow mb-8">
+                                Progressive Web App featuring WebSocket architecture for low-latency, real-time sync between the core platform and a companion mobile scanner, with refactored backend architecture.
+                            </p>
+                            <div class="flex flex-wrap gap-4 mt-auto">
+                                <a href="https://bsu-trace-pwa.vercel.app" target="_blank" rel="noopener noreferrer" class="text-sm font-bold text-black dark:text-white hover:underline underline-offset-4">Live Demo &rarr;</a>
+                                <a href="https://github.com/denise-refuerzo/BSU-TRACE-PWA" target="_blank" rel="noopener noreferrer" class="text-sm font-bold text-gray-500 hover:text-black dark:hover:text-white transition-colors">Source Code &rarr;</a>
+                            </div>
+                        </div>
 
-                <!-- Social Links -->
-                <div class="social-links">
-                    <a href="https://www.facebook.com/giand.299404" target="_blank" aria-label="Facebook">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                        <!-- BREADLY -->
+                        <div class="group bg-lightCard dark:bg-darkCard border border-lightBorder dark:border-darkBorder p-6 md:p-8 rounded-2xl hover:border-black dark:hover:border-white transition-all duration-300 flex flex-col">
+                            <div class="flex justify-between items-start mb-4 gap-2">
+                                <h3 class="text-lg md:text-xl font-bold text-black dark:text-white">BREADLY</h3>
+                                <span class="text-[11px] font-bold px-2.5 py-1 bg-gray-100 dark:bg-darkBg border border-gray-200 dark:border-darkBorder rounded-full text-gray-600 dark:text-gray-300 whitespace-nowrap">Main Developer</span>
+                            </div>
+                            <div class="text-xs md:text-sm font-medium text-gray-500 mb-4">December 2025</div>
+                            <div class="flex flex-wrap gap-2 mb-6">
+                                <span class="text-xs font-semibold px-2.5 py-1 bg-gray-100 dark:bg-black rounded text-black dark:text-white">PHP</span>
+                                <span class="text-xs font-semibold px-2.5 py-1 bg-gray-100 dark:bg-black rounded text-black dark:text-white">JS</span>
+                                <span class="text-xs font-semibold px-2.5 py-1 bg-gray-100 dark:bg-black rounded text-black dark:text-white">Tailwind CSS</span>
+                            </div>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed flex-grow mb-8">
+                                End-to-end POS and Inventory Management System featuring real-time product tracking, stock management workflows, and automated transaction processing.
+                            </p>
+                            <div class="flex flex-wrap gap-4 mt-auto">
+                                <a href="https://github.com/camilegrace425/breadly" target="_blank" rel="noopener noreferrer" class="text-sm font-bold text-black dark:text-white hover:underline underline-offset-4">Source Code &rarr;</a>
+                            </div>
+                        </div>
+
+                        <!-- Healthcare -->
+                        <div class="group bg-lightCard dark:bg-darkCard border border-lightBorder dark:border-darkBorder p-6 md:p-8 rounded-2xl hover:border-black dark:hover:border-white transition-all duration-300 flex flex-col">
+                            <div class="flex justify-between items-start mb-4 gap-2">
+                                <h3 class="text-lg md:text-xl font-bold text-black dark:text-white">Healthcare Data</h3>
+                                <span class="text-[11px] font-bold px-2.5 py-1 bg-gray-100 dark:bg-darkBg border border-gray-200 dark:border-darkBorder rounded-full text-gray-600 dark:text-gray-300 whitespace-nowrap">Backend</span>
+                            </div>
+                            <div class="text-xs md:text-sm font-medium text-gray-500 mb-4">May 2025</div>
+                            <div class="flex flex-wrap gap-2 mb-6">
+                                <span class="text-xs font-semibold px-2.5 py-1 bg-gray-100 dark:bg-black rounded text-black dark:text-white">PHP</span>
+                                <span class="text-xs font-semibold px-2.5 py-1 bg-gray-100 dark:bg-black rounded text-black dark:text-white">PostgreSQL</span>
+                                <span class="text-xs font-semibold px-2.5 py-1 bg-gray-100 dark:bg-black rounded text-black dark:text-white">JS</span>
+                            </div>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed flex-grow mb-8">
+                                Web-based platform built for remote communities to securely manage patient records, medical personnel information, and decision-support analytics dashboards.
+                            </p>
+                            <div class="flex flex-wrap gap-4 mt-auto">
+                                <a href="https://github.com/givano750/Healthcare-Data-Management-System-for-Remote-Community" target="_blank" rel="noopener noreferrer" class="text-sm font-bold text-black dark:text-white hover:underline underline-offset-4">Source Code &rarr;</a>
+                            </div>
+                        </div>
+
+                        <!-- CLAVEM -->
+                        <div class="group bg-lightCard dark:bg-darkCard border border-lightBorder dark:border-darkBorder p-6 md:p-8 rounded-2xl hover:border-black dark:hover:border-white transition-all duration-300 flex flex-col">
+                            <div class="flex justify-between items-start mb-4 gap-2">
+                                <h3 class="text-lg md:text-xl font-bold text-black dark:text-white">CLAVEM</h3>
+                                <span class="text-[11px] font-bold px-2.5 py-1 bg-gray-100 dark:bg-darkBg border border-gray-200 dark:border-darkBorder rounded-full text-gray-600 dark:text-gray-300 whitespace-nowrap">Co-Developer</span>
+                            </div>
+                            <div class="text-xs md:text-sm font-medium text-gray-500 mb-4">December 2024</div>
+                            <div class="flex flex-wrap gap-2 mb-6">
+                                <span class="text-xs font-semibold px-2.5 py-1 bg-gray-100 dark:bg-black rounded text-black dark:text-white">PHP</span>
+                                <span class="text-xs font-semibold px-2.5 py-1 bg-gray-100 dark:bg-black rounded text-black dark:text-white">PostgreSQL</span>
+                            </div>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed flex-grow mb-8">
+                                Comprehensive real-estate management platform facilitating digital property browsing, automated client inquiry tracking, and scheduling for site visits.
+                            </p>
+                            <div class="flex flex-wrap gap-4 mt-auto">
+                                <a href="https://github.com/givano750/Real-Estate-Platform-Using-PHP-for-Property-Listings-and-Management" target="_blank" rel="noopener noreferrer" class="text-sm font-bold text-black dark:text-white hover:underline underline-offset-4">Source Code &rarr;</a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- GitHub Activity Section -->
+                <section id="github-activity" class="fade-in mb-24 md:mb-32 w-full flex flex-col items-center">
+                    <h2 class="text-2xl md:text-3xl font-bold mb-8 md:mb-10 tracking-tight flex items-center gap-4 w-full">
+                        <span class="w-8 h-1 bg-black dark:bg-white rounded-full"></span> GitHub Activity
+                    </h2>
+                    
+                    <!-- Loading Spinner -->
+                    <div id="calendar-loader" class="flex flex-col items-center justify-center py-12 gap-4 w-full">
+                        <svg class="animate-spin h-8 w-8 text-black dark:text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-20" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                         </svg>
-                        <span>Gian Carlo Diaz</span>
-                    </a>
-                    <a href="https://www.instagram.com/jiyaaanc" target="_blank" aria-label="Instagram">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-                        </svg>
-                        <span>@jiyaaanc</span>
-                    </a>
-                    <a href="https://ph.linkedin.com/in/gian-carlo-diaz-a56909292" target="_blank" aria-label="LinkedIn">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a22 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
-                            <rect x="2" y="9" width="4" height="12"></rect>
-                            <circle cx="4" cy="4" r="2"></circle>
-                        </svg>
-                        <span>Gian Carlo Diaz</span>
-                    </a>
-                    <a href="https://github.com/givano750" target="_blank" aria-label="GitHub">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-                        </svg>
-                        <span>givano750</span>
-                    </a>
-                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=giancarlondiaz@gmail.com" target="_blank" aria-label="Gmail">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                            <polyline points="22,6 12,13 2,6"></polyline>
-                        </svg>
-                        <span>giancarlondiaz@gmail.com</span>
-                    </a>
-                </div>
-            </section>
+                        <span class="text-xs font-bold text-gray-500 uppercase tracking-widest">Syncing Commits</span>
+                    </div>
 
-            <footer>
-                <p>&copy; 2026 Gian Carlo Diaz. All rights reserved.</p>
-            </footer>
+                    <!-- Pure Calendar Wrapper -->
+                    <div class="w-full flex justify-center pb-2">
+                        <div class="calendar w-full opacity-0 transition-opacity duration-1000 ease-out">
+                            <!-- GitHub Calendar injects here -->
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Seminars Section -->
+                <section id="seminars" class="fade-in mb-24 md:mb-32">
+                    <h2 class="text-2xl md:text-3xl font-bold mb-8 md:mb-10 tracking-tight flex items-center gap-4">
+                        <span class="w-8 h-1 bg-black dark:bg-white rounded-full"></span> Seminars & Conferences
+                    </h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="p-6 border border-lightBorder dark:border-darkBorder bg-lightCard dark:bg-darkCard rounded-xl hover:border-gray-400 dark:hover:border-gray-600 transition-colors">
+                            <div class="text-xs font-bold text-gray-500 mb-2">October 2026</div>
+                            <h3 class="text-base md:text-lg font-bold text-black dark:text-white mb-1">ConvergeIT 2026</h3>
+                            <p class="text-xs md:text-sm text-gray-600 dark:text-gray-400">Converging Technologies for a Responsible, Secure, and Sustainable Digital Future</p>
+                            <p class="text-xs font-semibold text-gray-500 mt-3">Batangas Information Technology Society</p>
+                        </div>
+                        <div class="p-6 border border-lightBorder dark:border-darkBorder bg-lightCard dark:bg-darkCard rounded-xl hover:border-gray-400 dark:hover:border-gray-600 transition-colors">
+                            <div class="text-xs font-bold text-gray-500 mb-2">October 2026</div>
+                            <h3 class="text-base md:text-lg font-bold text-black dark:text-white mb-1">BITS2026</h3>
+                            <p class="text-xs md:text-sm text-gray-600 dark:text-gray-400">AI and Blockchain for Smart Cities, Smart Business, and Smart Governance</p>
+                            <p class="text-xs font-semibold text-gray-500 mt-3">Batangas Information Technology Society</p>
+                        </div>
+                        <div class="p-6 border border-lightBorder dark:border-darkBorder bg-lightCard dark:bg-darkCard rounded-xl hover:border-gray-400 dark:hover:border-gray-600 transition-colors">
+                            <div class="text-xs font-bold text-gray-500 mb-2">October 2025</div>
+                            <h3 class="text-base md:text-lg font-bold text-black dark:text-white mb-1">DATABIZ 2025</h3>
+                            <p class="text-xs md:text-sm text-gray-600 dark:text-gray-400">Future-Proof Skills: Empowering Students with Data, AI, and Analytics</p>
+                            <p class="text-xs font-semibold text-gray-500 mt-3">Batangas Information Technology Society</p>
+                        </div>
+                        <div class="p-6 border border-lightBorder dark:border-darkBorder bg-lightCard dark:bg-darkCard rounded-xl hover:border-gray-400 dark:hover:border-gray-600 transition-colors">
+                            <div class="text-xs font-bold text-gray-500 mb-2">April 2025</div>
+                            <h3 class="text-base md:text-lg font-bold text-black dark:text-white mb-1">BITCON 2025</h3>
+                            <p class="text-xs md:text-sm text-gray-600 dark:text-gray-400">Building a Connected Tomorrow: IoT Innovations and Beyond</p>
+                            <p class="text-xs font-semibold text-gray-500 mt-3">Batangas Information Technology Society</p>
+                        </div>
+                        <div class="p-6 border border-lightBorder dark:border-darkBorder bg-lightCard dark:bg-darkCard rounded-xl hover:border-gray-400 dark:hover:border-gray-600 transition-colors">
+                            <div class="text-xs font-bold text-gray-500 mb-2">November 2024</div>
+                            <h3 class="text-base md:text-lg font-bold text-black dark:text-white mb-1">BITCON 2024</h3>
+                            <p class="text-xs md:text-sm text-gray-600 dark:text-gray-400">Navigating the Future of Technology: Integration, Innovation, and Security</p>
+                            <p class="text-xs font-semibold text-gray-500 mt-3">Batangas Information Technology Society</p>
+                        </div>
+                        <div class="p-6 border border-lightBorder dark:border-darkBorder bg-lightCard dark:bg-darkCard rounded-xl hover:border-gray-400 dark:hover:border-gray-600 transition-colors">
+                            <div class="text-xs font-bold text-gray-500 mb-2">April 2024</div>
+                            <h3 class="text-base md:text-lg font-bold text-black dark:text-white mb-1">DATABIZ 2024</h3>
+                            <p class="text-xs md:text-sm text-gray-600 dark:text-gray-400">Equipping Tomorrow's Innovations with Data Science, AI, and Business Analytics</p>
+                            <p class="text-xs font-semibold text-gray-500 mt-3">Batangas Information Technology Society</p>
+                        </div>
+                        <div class="p-6 border border-lightBorder dark:border-darkBorder bg-lightCard dark:bg-darkCard rounded-xl hover:border-gray-400 dark:hover:border-gray-600 transition-colors md:col-span-2">
+                            <div class="text-xs font-bold text-gray-500 mb-2">February 2023</div>
+                            <h3 class="text-base md:text-lg font-bold text-black dark:text-white mb-1">FlexPHD: Food is Life EXemplified</h3>
+                            <p class="text-xs md:text-sm text-gray-600 dark:text-gray-400">Using Digital Technology for Making Data- and Values-Driven Food Choices</p>
+                            <p class="text-xs font-semibold text-gray-500 mt-3">SEAMEO SEARCA & NAST PHL</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Contact Section -->
+                <section id="contact" class="fade-in mb-16">
+                    <h2 class="text-2xl md:text-3xl font-bold mb-4 tracking-tight flex items-center gap-4">
+                        <span class="w-8 h-1 bg-black dark:bg-white rounded-full"></span> Let's Connect
+                    </h2>
+                    <p class="text-gray-600 dark:text-gray-400 mb-8 max-w-xl text-base md:text-lg">I'm currently open for new opportunities. Feel free to reach out!</p>
+                    
+                    <button type="button" id="show-form-btn" class="px-8 py-4 bg-black dark:bg-white text-white dark:text-black font-bold rounded-xl hover:-translate-y-1 hover:shadow-xl transition-all duration-300 w-full sm:w-auto cursor-pointer">Email Me</button>
+                    
+                    <form id="contact-form" class="hidden flex-col gap-4 max-w-xl mt-6 animate-[fadeIn_0.5s_ease-out]" action="https://formspree.io/f/xppprqkd" method="POST">
+                        <div class="flex flex-wrap gap-1">Name</div>
+                        <input type="text" name="name" placeholder="Your Name" required class="w-full px-5 py-4 bg-lightCard dark:bg-darkCard border border-lightBorder dark:border-darkBorder rounded-xl focus:outline-none focus:border-black dark:focus:border-white transition-colors text-black dark:text-white text-sm md:text-base">
+                        <div class="flex flex-wrap gap-1">Email</div>
+                        <input type="email" name="email" placeholder="Your Email" required class="w-full px-5 py-4 bg-lightCard dark:bg-darkCard border border-lightBorder dark:border-darkBorder rounded-xl focus:outline-none focus:border-black dark:focus:border-white transition-colors text-black dark:text-white text-sm md:text-base">
+                        <div class="flex flex-wrap gap-1">Message</div>
+                        <textarea name="message" placeholder="Your Message" rows="5" required class="w-full px-5 py-4 bg-lightCard dark:bg-darkCard border border-lightBorder dark:border-darkBorder rounded-xl focus:outline-none focus:border-black dark:focus:border-white transition-colors text-black dark:text-white resize-none text-sm md:text-base"></textarea>
+                        <button type="submit" class="px-8 py-4 bg-black dark:bg-white text-white dark:text-black font-bold rounded-xl hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors w-full sm:w-auto self-start cursor-pointer">Send Message</button>
+                        <p id="form-status" class="text-sm font-medium mt-2"></p>
+                    </form>
+
+                    <!-- Social Links -->
+                    <div class="flex flex-wrap gap-3 mt-10">
+                        <div class="text-sm font-bold text-gray-500 dark:text-gray-400 uppercase tracking-widest mb-2 w-full">Want to reach out directly?</div>
+                        <a href="https://github.com/givano750" target="_blank" aria-label="GitHub" class="flex items-center gap-2.5 px-4 py-3 rounded-xl border border-lightBorder dark:border-darkBorder bg-lightCard dark:bg-darkCard hover:border-black dark:hover:border-white text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition-all duration-300 text-sm font-medium">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                            <span>givano750</span>
+                        </a>
+                        <a href="https://ph.linkedin.com/in/gian-carlo-diaz-a56909292" target="_blank" aria-label="LinkedIn" class="flex items-center gap-2.5 px-4 py-3 rounded-xl border border-lightBorder dark:border-darkBorder bg-lightCard dark:bg-darkCard hover:border-black dark:hover:border-white text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition-all duration-300 text-sm font-medium">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a22 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                            <span>Gian Carlo Diaz</span>
+                        </a>
+                        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=giancarlondiaz@gmail.com" target="_blank" aria-label="Gmail" class="flex items-center gap-2.5 px-4 py-3 rounded-xl border border-lightBorder dark:border-darkBorder bg-lightCard dark:bg-darkCard hover:border-black dark:hover:border-white text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition-all duration-300 text-sm font-medium">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                            <span>giancarlondiaz@gmail.com</span>
+                        </a>
+                        <a href="https://www.facebook.com/giand.299404" target="_blank" aria-label="Facebook" class="flex items-center gap-2.5 px-4 py-3 rounded-xl border border-lightBorder dark:border-darkBorder bg-lightCard dark:bg-darkCard hover:border-black dark:hover:border-white text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition-all duration-300 text-sm font-medium">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                            <span>Gian Carlo Diaz</span>
+                        </a>
+                        <a href="https://www.instagram.com/jiyaaanc" target="_blank" aria-label="Instagram" class="flex items-center gap-2.5 px-4 py-3 rounded-xl border border-lightBorder dark:border-darkBorder bg-lightCard dark:bg-darkCard hover:border-black dark:hover:border-white text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition-all duration-300 text-sm font-medium">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                            <span>@jiyaaanc</span>
+                        </a>
+                    </div>
+                </section>
+
+                <footer class="border-t border-lightBorder dark:border-darkBorder pt-8 mt-12 text-center text-xs md:text-sm text-gray-500">
+                    <p>&copy; 2026 Gian Carlo Diaz. All rights reserved.</p>
+                </footer>
+            </div>
         </main>
     </div>
+
     <script src="script.js"></script>
 </body>
 </html>
