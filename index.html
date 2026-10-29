@@ -45,8 +45,10 @@
 </head>
 <body class="bg-lightBg text-gray-900 dark:bg-darkBg dark:text-gray-100 antialiased overflow-x-hidden">
     
-    <!-- Geometric Interactive Background -->
-    <canvas id="bg-canvas"></canvas>
+    <!-- Matrix Theme Transition Canvas (Absolute Bottom Layer) -->
+    <canvas id="theme-transition-canvas" class="fixed inset-0 pointer-events-none z-0 opacity-0 transition-opacity duration-300"></canvas>
+    <!-- Geometric & Matrix Transition Background Canvas -->
+    <canvas id="bg-canvas" class="fixed inset-0 pointer-events-none z-0"></canvas>
 
     <div class="flex min-h-screen relative z-10 w-full">
         
