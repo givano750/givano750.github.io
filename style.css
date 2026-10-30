@@ -17,7 +17,7 @@ a, button, input, textarea, .glass-panel, header, section, .tech-chip {
     left: 0;
     width: 100vw;
     height: 100vh;
-    z-index: 30;
+    z-index: 0;
     pointer-events: none;
     will-change: transform;
 }

@@ -45,8 +45,8 @@
 </head>
 <body class="bg-lightBg text-gray-900 dark:bg-darkBg dark:text-gray-100 antialiased overflow-x-hidden selection:bg-black selection:text-white dark:selection:bg-white dark:selection:text-black">
 
-    <!-- Dynamic Background Canvas (z-30 layer renders debris over UI elements) -->
-    <canvas id="bg-canvas" class="fixed inset-0 pointer-events-none z-30"></canvas>
+    <!-- Dynamic Background Canvas (z-0 layer places particles behind UI content) -->
+    <canvas id="bg-canvas" class="fixed inset-0 pointer-events-none z-0"></canvas>
     
     <div class="flex min-h-screen relative z-10 w-full">
         <!-- Mobile Menu Toggle Button -->
@@ -175,13 +175,13 @@
                     </div>
                 </section>
 
-                <!-- Restructured Tech Stack & Skills Section with Hover Pop-up Effects & Logos -->
+                <!-- Restructured Tech Stack & Skills Section -->
                 <section id="skills" class="fade-in mb-24 md:mb-32">
                     <h2 class="text-2xl md:text-3xl font-bold mb-4 md:mb-6 tracking-tight flex items-center gap-4">
                         <span class="w-8 h-1 bg-black dark:bg-white rounded-full"></span> Tech Stack & Skills
                     </h2>
                     <p class="text-sm md:text-base text-gray-600 dark:text-gray-400 mb-8 max-w-2xl">
-                        A categorized overview of tools, languages, frameworks, and technologies I use to architect and deploy web platforms and analytical systems. Hover over cards and skills to reveal icons and micro-interactions.
+                        A categorized overview of tools, languages, frameworks, and technologies I use to architect and deploy web platforms and analytical systems.
                     </p>
 
                     <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
